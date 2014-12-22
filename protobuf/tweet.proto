@@ -1,0 +1,10 @@
+message Tweet {
+    optional int64 id = 1;
+    optional string author = 2;
+    optional string text = 3;
+    repeated string hashtags = 4;
+    repeated string pictures = 5;
+    optional double latitude = 6;
+    optional double longitude = 7;
+}
+

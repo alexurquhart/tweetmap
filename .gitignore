@@ -22,3 +22,8 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+*.out
+coverage.html
+test.sh
+*.swp
