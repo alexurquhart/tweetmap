@@ -7,6 +7,7 @@ package tweetmap
 
 import (
 	"database/sql"
+	"errors"
 	_ "github.com/lib/pq"
 	"time"
 )
@@ -32,7 +33,11 @@ func (t *TweetDb) Init(user string, database string, host string, password strin
 }
 
 // Queries the database and returns a map of tweet frequency over the past 24 hours
-func (t *TweetDb) TweetsPast24Hrs() (map[time.Time]int, error) {
+func (t *TweetDb) TweetsPast24Hrs() (map[string]int, error) {
+	if t.Db == nil {
+		return nil, errors.New("TweetDB Error: Not connected to the database")
+	}
+
 	rows, err := t.Db.Query("SELECT * FROM tweetwatcher.\"V_tweetsPast24Hrs\";")
 
 	if err != nil {
@@ -41,7 +46,7 @@ func (t *TweetDb) TweetsPast24Hrs() (map[time.Time]int, error) {
 
 	defer rows.Close()
 
-	result := make(map[time.Time]int)
+	result := make(map[string]int)
 	for rows.Next() {
 		var hour time.Time
 		var count int
@@ -50,7 +55,7 @@ func (t *TweetDb) TweetsPast24Hrs() (map[time.Time]int, error) {
 			return nil, err
 		}
 
-		result[hour] = count
+		result[hour.String()] = count
 	}
 	return result, nil
 }
