@@ -9,19 +9,18 @@ import (
 	"database/sql"
 	"errors"
 	_ "github.com/lib/pq"
-	"time"
 )
-
-// Abstraction for the tweet database
-type TweetDb struct {
-	Db     *sql.DB
-	schema string
-}
 
 // Initialize connection to the tweet database
 func (t *TweetDb) Init(user string, database string, host string, password string, port string, schema string) error {
 	t.schema = schema
-	if db, err := sql.Open("postgres", "user="+user+" dbname="+database+" password="+password+" host="+host+" port="+port+" sslmode=require connect_timeout=5"); err != nil {
+	connStr := "user=" + user
+	connStr += " dbname=" + database
+	connStr += " password=" + password
+	connStr += " host=" + host
+	connStr += " port=" + port
+	connStr += " sslmode=require connect_timeout=5"
+	if db, err := sql.Open("postgres", connStr); err != nil {
 		return err
 	} else {
 		if err := db.Ping(); err != nil {
@@ -33,7 +32,7 @@ func (t *TweetDb) Init(user string, database string, host string, password strin
 }
 
 // Queries the database and returns a map of tweet frequency over the past 24 hours
-func (t *TweetDb) TweetsPast24Hrs() (map[string]int, error) {
+func (t *TweetDb) TweetsPast24Hrs() ([]TweetsPast24HrsResult, error) {
 	if t.Db == nil {
 		return nil, errors.New("TweetDB Error: Not connected to the database")
 	}
@@ -46,16 +45,41 @@ func (t *TweetDb) TweetsPast24Hrs() (map[string]int, error) {
 
 	defer rows.Close()
 
-	result := make(map[string]int)
+	var results []TweetsPast24HrsResult
 	for rows.Next() {
-		var hour time.Time
-		var count int
+		var result TweetsPast24HrsResult
 
-		if err := rows.Scan(&hour, &count); err != nil {
+		if err := rows.Scan(&result.hour, &result.count); err != nil {
 			return nil, err
 		}
 
-		result[hour.String()] = count
+		results = append(results, result)
 	}
-	return result, nil
+	return results, nil
+}
+
+func (t *TweetDb) TweetsByWardPast24Hrs() ([]TweetsByWardPast24HrsResult, error) {
+	if t.Db == nil {
+		return nil, errors.New("TweetDB Error: Not connected to the database")
+	}
+
+	rows, err := t.Db.Query("SELECT * FROM tweetwatcher.\"V_tweetsByWardDailyChange\";")
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+
+	var results []TweetsByWardPast24HrsResult
+	for rows.Next() {
+		var result TweetsByWardPast24HrsResult
+
+		if err := rows.Scan(&result.wardId, &result.past24Hrs, &result.dayChange); err != nil {
+			return nil, err
+		}
+
+		results = append(results, result)
+	}
+	return results, nil
 }

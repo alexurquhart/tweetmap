@@ -38,8 +38,13 @@ func TestInit(t *testing.T) {
 func TestTweetsPast24Hrs(t *testing.T) {
 	result, err := tdb.TweetsPast24Hrs()
 	assert.Nil(t, err)
-	assert.NotNil(t, result)
 
-	// returns 24 rows...
+	// There should be 24 items in the map - 1 for each hour of the past 24 hours
+	assert.Equal(t, 24, len(result))
+}
+
+func TestTweetsByWardPast24Hrs(t *testing.T) {
+	result, err := tdb.TweetsByWardPast24Hrs()
+	assert.Nil(t, err)
 	assert.Equal(t, 24, len(result))
 }
