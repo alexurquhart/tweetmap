@@ -13,13 +13,13 @@ type TweetDb struct {
 
 // Result for tweets in the past 24 hours
 type TweetsPast24HrsResult struct {
-	hour  time.Time
-	count int
+	Hour  time.Time `json:"hour"`
+	Count int       `json:"count"`
 }
 
 // Result for tweets by ward in the past 24 hrs
 type TweetsByWardPast24HrsResult struct {
-	wardId    int
-	past24Hrs int
-	dayChange int
+	WardId    int `json:"wardId"`
+	Past24Hrs int `json:"past24Hrs"`
+	DayChange int `json:"dayChange"`
 }

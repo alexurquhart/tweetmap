@@ -49,7 +49,7 @@ func (t *TweetDb) TweetsPast24Hrs() ([]TweetsPast24HrsResult, error) {
 	for rows.Next() {
 		var result TweetsPast24HrsResult
 
-		if err := rows.Scan(&result.hour, &result.count); err != nil {
+		if err := rows.Scan(&result.Hour, &result.Count); err != nil {
 			return nil, err
 		}
 
@@ -75,7 +75,7 @@ func (t *TweetDb) TweetsByWardPast24Hrs() ([]TweetsByWardPast24HrsResult, error)
 	for rows.Next() {
 		var result TweetsByWardPast24HrsResult
 
-		if err := rows.Scan(&result.wardId, &result.past24Hrs, &result.dayChange); err != nil {
+		if err := rows.Scan(&result.WardId, &result.Past24Hrs, &result.DayChange); err != nil {
 			return nil, err
 		}
 
