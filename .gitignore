@@ -1,6 +1,7 @@
 *.out
 bower_components
 watcher/*
+database/postgres_data
 */coverage.html
 *.sh
 *.sql
