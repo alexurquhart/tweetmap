@@ -1,0 +1,30 @@
+message Tweet {
+    message User {
+        optional int64 id = 1;
+        optional string name = 2;
+    }
+
+	message Image {
+		optional string source = 1 [default = "TWITTER"];
+		optional string url = 2;
+	}
+
+	message Url {
+		optional string display = 1;
+		optional string actual = 2;
+	}
+
+    message Coordinate {
+        optional double latitude = 1;
+        optional double longitude = 2;
+    }
+
+    optional int64 id = 1;
+    optional User user = 2;
+    optional string text = 3;
+    optional Coordinate coordinates = 4;
+    repeated string hashtags = 5;
+    repeated Image pictures = 6;
+    repeated Url urls = 7;
+    repeated User mentions = 8;
+}

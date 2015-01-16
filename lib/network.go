@@ -9,68 +9,81 @@ import (
 // Initializes ZMQ as a publisher
 // Returns a channel for incoming tweets that need to be pushed out
 // and an error channel used for outcoming publishing or tweet marshalling errors
-func InitPublisher(connStr string, tweetChan chan *prototweet.Tweet, errorChan chan error) error {
-	
-	go func(
-	// Create a new ZMQ context
-	ctx, err := zmq.NewContext()
+// Goroutine exits on closing of the tweet channel
+func InitPublisher(connStr string, tweetChan chan *prototweet.Tweet, errorChan chan error) {
 
-	if err != nil {
-		return err
-	}
+	go func(connStr string, tweetChan chan *prototweet.Tweet, errorChan chan error) {
+		defer close(errorChan)
 
-	// Start ZMQ and bind to the connection string
-	pub, err := ctx.NewSocket(zmq.PUB)
-	defer pub.Close()
+		// Create a new ZMQ context
+		ctx, err := zmq.NewContext()
 
-	if err != nil {
-		return err
-	}
-
-	if err := pub.Bind(connStr); err != nil {
-		return err
-	}
-
-	// Loop indefinitely
-	for {
-		tweet, more := <-tweetChan
-		if more {
-			// Marshall the tweet
-			m, err := proto.Marshal(tweet)
-			if err != nil {
-				errorChan <- err
-				break
-			}
-
-			// Send the tweet
-			if _, err := pub.Send("TWEET", zmq.SNDMORE); err != nil {
-				errorChan <- err
-				break
-			}
-			if _, err := pub.SendBytes(m, 0); err != nil {
-				errorChan <- err
-			}
-		} else {
-			return nil
+		if err != nil {
+			errorChan <- err
+			return
 		}
-	}
 
-	return nil
+		// Start ZMQ and bind to the connection string
+		pub, err := ctx.NewSocket(zmq.PUB)
+		defer pub.Close()
+
+		if err != nil {
+			errorChan <- err
+			return
+		}
+
+		if err := pub.Bind(connStr); err != nil {
+			errorChan <- err
+			return
+		}
+
+		// Loop indefinitely
+		for {
+			tweet, more := <-tweetChan
+			if more {
+				// Marshall the tweet
+				m, err := proto.Marshal(tweet)
+				if err != nil {
+					errorChan <- err
+					break
+				}
+
+				// Send the tweet
+				if _, err := pub.Send("TWEET", zmq.SNDMORE); err != nil {
+					errorChan <- err
+					break
+				}
+				if _, err := pub.SendBytes(m, 0); err != nil {
+					errorChan <- err
+				}
+			} else {
+				return
+			}
+		}
+	}(connStr, tweetChan, errorChan)
+
+	return
 }
 
 // Initializes ZMQ as a receiver
 // Returns a channel for incoming tweets and a channel for errors.
-func InitReceiver(connStr string) (chan *prototweet.Tweet, chan error, error) {
+// Takes a connection string, and a boolean channel to signal when to stop receiving tweets.
+// Goroutine exits when any value is passed to the done channel
+func InitReceiver(connStr string, doneChan chan bool) (chan *prototweet.Tweet, chan error) {
 
 	// Make the tweet and error channel
 	tweetChan := make(chan *prototweet.Tweet)
 	errorChan := make(chan error)
 
-	go func(c chan *prototweet.Tweet, e chan error) {
+	go func(tweetChan chan *prototweet.Tweet, errorChan chan error, doneChan chan bool) {
+		defer close(tweetChan)
+		defer close(errorChan)
+
 		// Create a new ZMQ context
 		ctx, err := zmq.NewContext()
 
 		if err != nil {
+			errorChan <- err
 			return
 		}
 
@@ -79,43 +92,50 @@ func InitReceiver(connStr string) (chan *prototweet.Tweet, chan error, error) {
 		defer sub.Close()
 
 		if err != nil {
-			e <- err
+			errorChan <- err
 			return
 		}
 
 		if err := sub.Connect(connStr); err != nil {
-			e <- err
+			errorChan <- err
 			return
 		}
 
 		if err := sub.SetSubscribe("TWEET"); err != nil {
-			e <- err
+			errorChan <- err
 			return
 		}
 
 		// Loop indefinitely
 		for {
-			// Receive the tweet
-			sub.Recv(0)
-			bytes, err := sub.RecvBytes(0)
+			select {
+			case msg, more := <-doneChan:
+				if msg || !more {
+					return
+				}
+			default:
+				// Receive the tweet
+				sub.Recv(0)
+				bytes, err := sub.RecvBytes(0)
 
-			if err != nil {
-				e <- err
-				continue
+				if err != nil {
+					errorChan <- err
+					continue
+				}
+
+				// Attempt to unmarshall the bytes
+				tweet := &prototweet.Tweet{}
+				if err := proto.Unmarshal(bytes, tweet); err != nil {
+					errorChan <- err
+					continue
+				}
+
+				// Send the tweet on the outbound channel!
+				tweetChan <- tweet
 			}
-
-			// Attempt to unmarshall the bytes
-			tweet := &prototweet.Tweet{}
-			if err := proto.Unmarshal(bytes, tweet); err != nil {
-				e <- err
-				continue
-			}
-
-			// Send the tweet on the outbound channel!
-			c <- tweet
 		}
-	}(tweetChan, errorChan)
+	}(tweetChan, errorChan, doneChan)
 
 	// Return the channels
-	return tweetChan, errorChan, nil
+	return tweetChan, errorChan
 }

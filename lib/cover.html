@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">github.com/cdn-madness/tweetmap/lib/network.go (60.3%)</option>
+				
+				<option value="file1">github.com/cdn-madness/tweetmap/lib/transform.go (100.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" >package tweetmap
+
+import (
+        "github.com/cdn-madness/tweetmap/protobuf"
+        "github.com/golang/protobuf/proto"
+        zmq "github.com/pebbe/zmq4"
+)
+
+// Initializes ZMQ as a publisher
+// Returns a channel for incoming tweets that need to be pushed out
+// and an error channel used for outcoming publishing or tweet marshalling errors
+// Goroutine exits on closing of the tweet channel
+func InitPublisher(connStr string, tweetChan chan *prototweet.Tweet, errorChan chan error) <span class="cov8" title="1">{
+
+        go func(connStr string, tweetChan chan *prototweet.Tweet, errorChan chan error) </span><span class="cov8" title="1">{
+                defer close(errorChan)
+
+                // Create a new ZMQ context
+                ctx, err := zmq.NewContext()
+
+                if err != nil </span><span class="cov0" title="0">{
+                        errorChan &lt;- err
+                        return
+                }</span>
+
+                // Start ZMQ and bind to the connection string
+                <span class="cov8" title="1">pub, err := ctx.NewSocket(zmq.PUB)
+                defer pub.Close()
+
+                if err != nil </span><span class="cov0" title="0">{
+                        errorChan &lt;- err
+                        return
+                }</span>
+
+                <span class="cov8" title="1">if err := pub.Bind(connStr); err != nil </span><span class="cov0" title="0">{
+                        errorChan &lt;- err
+                        return
+                }</span>
+
+                // Loop indefinitely
+                <span class="cov8" title="1">for </span><span class="cov8" title="1">{
+                        tweet, more := &lt;-tweetChan
+                        if more </span><span class="cov8" title="1">{
+                                // Marshall the tweet
+                                m, err := proto.Marshal(tweet)
+                                if err != nil </span><span class="cov0" title="0">{
+                                        errorChan &lt;- err
+                                        break</span>
+                                }
+
+                                // Send the tweet
+                                <span class="cov8" title="1">if _, err := pub.Send("TWEET", zmq.SNDMORE); err != nil </span><span class="cov0" title="0">{
+                                        errorChan &lt;- err
+                                        break</span>
+                                }
+                                <span class="cov8" title="1">if _, err := pub.SendBytes(m, 0); err != nil </span><span class="cov0" title="0">{
+                                        errorChan &lt;- err
+                                }</span>
+                        }<span class="cov8" title="1"> else {
+                                return
+                        }</span>
+                }
+        }(connStr, tweetChan, errorChan)
+
+        <span class="cov8" title="1">return</span>
+}
+
+// Initializes ZMQ as a receiver
+// Returns a channel for incoming tweets and a channel for errors.
+// Takes a connection string, and a boolean channel to signal when to stop receiving tweets.
+// Goroutine exits when any value is passed to the done channel
+func InitReceiver(connStr string, doneChan chan bool) (chan *prototweet.Tweet, chan error) <span class="cov8" title="1">{
+
+        // Make the tweet and error channel
+        tweetChan := make(chan *prototweet.Tweet)
+        errorChan := make(chan error)
+
+        go func(tweetChan chan *prototweet.Tweet, errorChan chan error, doneChan chan bool) </span><span class="cov8" title="1">{
+                defer close(tweetChan)
+                defer close(errorChan)
+
+                // Create a new ZMQ context
+                ctx, err := zmq.NewContext()
+
+                if err != nil </span><span class="cov0" title="0">{
+                        errorChan &lt;- err
+                        return
+                }</span>
+
+                // Start ZMQ and bind to the connection string
+                <span class="cov8" title="1">sub, err := ctx.NewSocket(zmq.SUB)
+                defer sub.Close()
+
+                if err != nil </span><span class="cov0" title="0">{
+                        errorChan &lt;- err
+                        return
+                }</span>
+
+                <span class="cov8" title="1">if err := sub.Connect(connStr); err != nil </span><span class="cov0" title="0">{
+                        errorChan &lt;- err
+                        return
+                }</span>
+
+                <span class="cov8" title="1">if err := sub.SetSubscribe("TWEET"); err != nil </span><span class="cov0" title="0">{
+                        errorChan &lt;- err
+                        return
+                }</span>
+
+                // Loop indefinitely
+                <span class="cov8" title="1">for </span><span class="cov8" title="1">{
+                        select </span>{
+                        <span class="cov0" title="0">case msg, more := &lt;-doneChan:
+                                if msg || !more </span><span class="cov0" title="0">{
+                                        return
+                                }</span>
+                        <span class="cov8" title="1">default:
+                                // Receive the tweet
+                                sub.Recv(0)
+                                bytes, err := sub.RecvBytes(0)
+
+                                if err != nil </span><span class="cov0" title="0">{
+                                        errorChan &lt;- err
+                                        continue</span>
+                                }
+
+                                // Attempt to unmarshall the bytes
+                                <span class="cov8" title="1">tweet := &amp;prototweet.Tweet{}
+                                if err := proto.Unmarshal(bytes, tweet); err != nil </span><span class="cov0" title="0">{
+                                        errorChan &lt;- err
+                                        continue</span>
+                                }
+
+                                // Send the tweet on the outbound channel!
+                                <span class="cov8" title="1">tweetChan &lt;- tweet</span>
+                        }
+                }
+        }(tweetChan, errorChan, doneChan)
+
+        // Return the channels
+        <span class="cov8" title="1">return tweetChan, errorChan</span>
+}
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package tweetmap
+
+import (
+        "github.com/cdn-madness/tweetmap/protobuf"
+        "github.com/darkhelmet/twitterstream"
+        "github.com/golang/protobuf/proto"
+)
+
+// Takes an input tweet from the twitterstream and transform it
+// into a prototweet - a type suitable for transmission over ZMQ
+// and JSON serialization
+func ToProtoTweet(in *twitterstream.Tweet) *prototweet.Tweet <span class="cov8" title="1">{
+        // Create a new tweet
+        tweet := &amp;prototweet.Tweet{
+                Id: proto.Int64(in.Id),
+                User: &amp;prototweet.Tweet_User{
+                        Id:   proto.Int64(in.User.Id),
+                        Name: proto.String(in.User.ScreenName),
+                },
+                Text: proto.String(in.Text),
+                Coordinates: &amp;prototweet.Tweet_Coordinate{
+                        Latitude:  proto.Float64(in.Coordinates.Lat.Float64()),
+                        Longitude: proto.Float64(in.Coordinates.Long.Float64()),
+                },
+        }
+
+        // Add the hashtags
+        for _, v := range in.Entities.Hashtags </span><span class="cov8" title="1">{
+                tweet.Hashtags = append(tweet.Hashtags, v.Text)
+        }</span>
+
+        // Add the pictures from twitter
+        <span class="cov8" title="1">for _, v := range in.Entities.Media </span><span class="cov8" title="1">{
+                pic := &amp;prototweet.Tweet_Image{
+                        Source: proto.String("TWITTER"),
+                        Url:    proto.String(v.MediaUrl),
+                }
+                tweet.Pictures = append(tweet.Pictures, pic)
+        }</span>
+
+        // Add URL's
+        <span class="cov8" title="1">for _, v := range in.Entities.Urls </span><span class="cov8" title="1">{
+                // TODO: filter out instagram links and add them as pictures
+                url := &amp;prototweet.Tweet_Url{
+                        Actual:  proto.String(v.Url),
+                        Display: proto.String(v.DisplayUrl),
+                }
+                tweet.Urls = append(tweet.Urls, url)
+        }</span>
+
+        // Add mentions
+        <span class="cov8" title="1">for _, v := range in.Entities.Mentions </span><span class="cov8" title="1">{
+                mention := &amp;prototweet.Tweet_User{
+                        Id:   proto.Int64(v.Id),
+                        Name: proto.String(v.FullName),
+                }
+                tweet.Mentions = append(tweet.Mentions, mention)
+        }</span>
+
+        <span class="cov8" title="1">return tweet</span>
+}
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible = document.getElementById('file0');
+		files.addEventListener('change', onChange, false);
+		function onChange() {
+			visible.style.display = 'none';
+			visible = document.getElementById(files.value);
+			visible.style.display = 'block';
+			window.scrollTo(0, 0);
+		}
+	})();
+	</script>
+</html>
