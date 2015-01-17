@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/cdn-madness/tweetmap.svg)](https://travis-ci.org/cdn-madness/tweetmap)
 #tweetmap
 **tweetmap** is a set of applications written Go, SQL, and HTML/JavaScript that I used to create the [Ottawa Tweet Mapper](http://tweet.alexurquhart.com). I have tried to follow the [microservices](http://microservices.io) pattern for this project as much as possible, and my end goal is having everything dockerized and capable of scaling up to many different monitoring areas, on many different machines.
 
