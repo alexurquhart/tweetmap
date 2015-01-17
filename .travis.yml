@@ -13,7 +13,7 @@ install:
     - cd lib && godep restore
 script:
     - go test -v -covermode=count -coverprofile=c.out github.com/cdn-madness/tweetmap/lib
-    - $HOME/gopath/bin/goveralls -coverprofile=c.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+    - goveralls -coverprofile=c.out -service=travis-ci -repotoken $COVERALLS_TOKEN
 
 env:
   global:
