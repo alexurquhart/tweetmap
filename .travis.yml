@@ -1,9 +1,18 @@
 language: go
 
 before_install:
-    go get github.com/tools/godep
+    - wget https://protobuf.googlecode.com/svn/rc/protobuf-2.6.0.tar.gz
+    - tar -xzvf protobuf-2.6.0.tar.gz
+
+    - wget http://download.zeromq.org/zeromq-4.0.5.tar.gz
+    - tar -xzvf zeromq-4.0.5.tar.gz
+
+    - go get github.com/tools/godep
 
 install:
-    cd lib && godep restore
+    - sudo apt-get install -y libtool pkg-config build-essential autoconf automake uuid-dev
+    - cd protobuf-2.6.0 && ./configure --prefix=/usr && make && make install && cd ..
+    - cd zeromq-4.0.5 && ./configure && make && sudo make install && cd ..
+    - cd lib && godep restore
 
 script: go test github.com/cdn-madness/tweetmap/lib
