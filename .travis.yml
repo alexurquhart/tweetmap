@@ -5,7 +5,10 @@ before_install:
     - tar -xzvf protobuf-2.6.0.tar.gz
     - wget http://download.zeromq.org/zeromq-4.0.5.tar.gz
     - tar -xzvf zeromq-4.0.5.tar.gz
+    
     - go get github.com/tools/godep
+    - go get code.google.com/p/go.tools/cmd/cover
+    - go get github.com/mattn/goveralls
 install:
     - sudo apt-get install -y uuid-dev
     - cd protobuf-2.6.0 && ./configure --prefix=/usr && make && sudo make install && cd ..
