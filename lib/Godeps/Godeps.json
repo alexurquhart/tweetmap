@@ -1,0 +1,26 @@
+{
+	"ImportPath": "github.com/cdn-madness/tweetmap/lib",
+	"GoVersion": "go1.4.1",
+	"Deps": [
+		{
+			"ImportPath": "github.com/darkhelmet/twitterstream",
+			"Rev": "93b4246466e083b05852d77e0e747994881c2a91"
+		},
+		{
+			"ImportPath": "github.com/garyburd/go-oauth/oauth",
+			"Rev": "3569e4f99821388ee0a971edd55e1a76cf761407"
+		},
+		{
+			"ImportPath": "github.com/golang/protobuf/proto",
+			"Rev": "60976d353effd937b53a171e7493148a9969e39a"
+		},
+		{
+			"ImportPath": "github.com/pebbe/zmq4",
+			"Rev": "b82b778e175510c98b2515834108ee8ad0c88819"
+		},
+		{
+			"ImportPath": "github.com/stretchr/testify/assert",
+			"Rev": "ae37dedcaae6fce497569786a8694aa3daa97abf"
+		}
+	]
+}
