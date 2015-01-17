@@ -12,12 +12,12 @@ before_install:
 install:
     - sudo apt-get install -y uuid-dev
     - cd protobuf-2.6.0 && ./configure --prefix=/usr && make && sudo make install && cd ..
-    - cd zeromq-4.0.5 && ./configure && make && sudo make install && cd ..
+    - cd zeromq-4.0.5 && ./configure && make && sudo make install && sudo ldconfig && cd ..
     - cd lib && godep restore
 script:
     - go test -v -covermode=count -coverprofile=c.out github.com/cdn-madness/tweetmap/lib
+after_success:
     - goveralls -coverprofile=c.out -service=travis-ci -repotoken $COVERALLS_TOKEN
-
 env:
   global:
     secure: tUfvi7QUyZqMTxqGaNofwOmCONOzz4QRubz+WJPxgd5L3NhCXYmeVQ5wdfGwZadJ3/Z0NWVlquLFcwL/O2lZy/qkk6e/yOtRnVQZMrz63Z+5O132RKznsIW9kQkzdElFkbEEG0coanSFi13yEz2KYwYhjqc6EhfXHCf5TURFIec=
