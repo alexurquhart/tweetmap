@@ -1,20 +1,25 @@
 language: go
-
 before_install:
-    - wget https://protobuf.googlecode.com/svn/rc/protobuf-2.6.0.tar.gz
-    - tar -xzvf protobuf-2.6.0.tar.gz
-    - wget http://download.zeromq.org/zeromq-4.0.5.tar.gz
-    - tar -xzvf zeromq-4.0.5.tar.gz
-    - go get github.com/tools/godep
+- wget https://protobuf.googlecode.com/svn/rc/protobuf-2.6.0.tar.gz
+- tar -xzvf protobuf-2.6.0.tar.gz
+- wget http://download.zeromq.org/zeromq-4.0.5.tar.gz
+- tar -xzvf zeromq-4.0.5.tar.gz
+- go get github.com/tools/godep
 install:
-    - sudo apt-get install -y uuid-dev
-    - cd protobuf-2.6.0 && ./configure --prefix=/usr && make && sudo make install && cd ..
-    - cd zeromq-4.0.5 && ./configure && make && sudo make install && cd ..
-    - cd lib && godep restore
+- sudo apt-get install -y uuid-dev
+- cd protobuf-2.6.0 && ./configure --prefix=/usr && make && sudo make install && cd
+  ..
+- cd zeromq-4.0.5 && ./configure && make && sudo make install && cd ..
+- cd lib && godep restore
 script:
-    - go test -v -covermode=count -coverprofile=c.out github.com/cdn-madness/tweetmap/lib
-    - $HOME/gopath/bin/goveralls -coverprofile=c.out -service=travis-ci -repotoken $COVERALLS_TOKEN
-
+- go test -v -covermode=count -coverprofile=c.out github.com/cdn-madness/tweetmap/lib
+- $HOME/gopath/bin/goveralls -coverprofile=c.out -service=travis-ci -repotoken $COVERALLS_TOKEN
 env:
   global:
-    secure: tUfvi7QUyZqMTxqGaNofwOmCONOzz4QRubz+WJPxgd5L3NhCXYmeVQ5wdfGwZadJ3/Z0NWVlquLFcwL/O2lZy/qkk6e/yOtRnVQZMrz63Z+5O132RKznsIW9kQkzdElFkbEEG0coanSFi13yEz2KYwYhjqc6EhfXHCf5TURFIec=
+  - secure: tUfvi7QUyZqMTxqGaNofwOmCONOzz4QRubz+WJPxgd5L3NhCXYmeVQ5wdfGwZadJ3/Z0NWVlquLFcwL/O2lZy/qkk6e/yOtRnVQZMrz63Z+5O132RKznsIW9kQkzdElFkbEEG0coanSFi13yEz2KYwYhjqc6EhfXHCf5TURFIec=
+  - secure: G3MFtxmcefvRX9v7YikaS42jgZeEVxg22pF2VC14lmh0k0XS8FohA5xE3WKGE7HDY/R/ukNxqbTqTmyga5ihfSyT0e3bQDgpgZgfUEWLSfJRy24DLMApuVzwx6ShM01MUVqoCLiEGXn4mV9QvpxLbTCT33dss7+3G97un7+DD50=
+  - secure: AIsl7FMs3dsroJfQ2vRF1w/n/uW4BgSofXwPR2qF9OtsSL73wWwbMUNpNXwhDOVzjhOOI65uGqOa/LcoysCZhWR9GiI+xur8gd3pfl77YCaEmxUNSFOfYs3Zb32TtL3OAl3FeA6eEXDLR2+xOfQwBH5xYjuCooC8djT3Tee0kXs=
+  - secure: VzXxeZI3DJ9aUWahEXPwNE3Vmro158C2dNpt9sfznXOkX5Gy+ujKMwQ2ikv7dRtFhcYSPBwj7+liwygSRGsyirCiez0SILgmQA6BPNgLkD42ugM3CiXDlKHL15q3tsCJZBE+7JlWPqIfR/sdZC1cuZlaWJQXVzxwgnsXR98nI0Q=
+  - secure: pYk5Jm+PawXw2YtY0voKKzsAc/Q6iKnmF+br6LinWjR6UB7xOKyB6xJcyN0C5XNRDq7S2Y44P+yNSUe+E3LCRtTrBAbg4t4gjU7kBW3875OwiBoT3FgIFvVli3AxVW7G235+OQMZgD5RSjk48FK0NJTlUSbXJZbnlfUMM3bakHM=
+dd:
+  secure: f0Ky5jPniLh6FfbWC/oyB7QeQfM1OmaX75EvNFCnKhMJ0/HuDio4Nbgee024ztrTYeRpiAGAhTL3x3IwUtQ4XIsgFLW1iRKYdouEgZxh6kKoKygwAcmDK7hMEDmuUK7YqIRBKFDyaRreakHoX8dsPRfpEmOTLgVQ07+B3rdKJrI=

@@ -57,10 +57,10 @@ L:
 			break L
 		case <-tweetChan:
 			received = true
+			close(doneChan)
 		case <-time.After(1 * time.Second):
 			break L
 		}
 	}
-	close(doneChan)
 	assert.True(t, received)
 }
