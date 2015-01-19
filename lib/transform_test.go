@@ -46,7 +46,14 @@ func TestToProtoTweet(t *testing.T) {
 
 	// Transform the tweet
 	var protoTweet = new(prototweet.Tweet)
-	protoTweet = ToProtoTweet(inTweet)
+	var err error
+	protoTweet, err = ToProtoTweet(inTweet)
+	assert.NoError(t, err)
+
+	// Malform the tweet
+	inTweet.Coordinates = nil
+	_, err = ToProtoTweet(inTweet)
+	assert.Error(t, err)
 
 	// Marshall the tweet
 	marshalled, err := proto.Marshal(protoTweet)

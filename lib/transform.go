@@ -1,6 +1,7 @@
 package tweetmap
 
 import (
+	"errors"
 	"github.com/cdn-madness/tweetmap/protobuf"
 	"github.com/darkhelmet/twitterstream"
 	"github.com/golang/protobuf/proto"
@@ -9,7 +10,13 @@ import (
 // Takes an input tweet from the twitterstream and transform it
 // into a prototweet - a type suitable for transmission over ZMQ
 // and JSON serialization
-func ToProtoTweet(in *twitterstream.Tweet) *prototweet.Tweet {
+func ToProtoTweet(in *twitterstream.Tweet) (out *prototweet.Tweet, err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			err = errors.New("Could not create tweet")
+		}
+	}()
+
 	// Create a new tweet
 	tweet := &prototweet.Tweet{
 		Id: proto.Int64(in.Id),
@@ -57,5 +64,6 @@ func ToProtoTweet(in *twitterstream.Tweet) *prototweet.Tweet {
 		tweet.Mentions = append(tweet.Mentions, mention)
 	}
 
-	return tweet
+	out = tweet
+	return
 }

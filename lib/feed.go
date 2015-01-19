@@ -59,11 +59,11 @@ func ListenToTwitter(cfg TwitterAPIConfig, filterFunc TweetFilter, doneChan chan
 						break
 					}
 
-					pTweet := ToProtoTweet(tweet)
-
 					// Filter tweeet and send it off
-					if filterFunc(pTweet) {
-						tweetChan <- ToProtoTweet(tweet)
+					if pTweet, err := ToProtoTweet(tweet); filterFunc(pTweet) && err == nil {
+						tweetChan <- pTweet
+					} else if err != nil {
+						errorChan <- err
 					}
 				}
 			}
