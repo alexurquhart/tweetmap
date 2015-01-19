@@ -12,19 +12,15 @@ const CONNSTR string = "ipc:///tmp/testfeed"
 func TestInitPublisher(t *testing.T) {
 	tweetChan := make(chan *prototweet.Tweet)
 	errorChan := make(chan error)
-	errFlag := false
 
-	InitPublisher(CONNSTR, tweetChan, errorChan)
-	for !errFlag {
-		select {
-		case err := <-errorChan:
-			assert.Fail(t, err.Error())
-			errFlag = true
-		default:
-			tweet := &prototweet.Tweet{}
-			tweetChan <- tweet
-			close(tweetChan)
-		}
+	select {
+	case err := <-errorChan:
+		assert.Fail(t, err.Error())
+	default:
+		InitPublisher(CONNSTR, tweetChan, errorChan)
+		tweet := &prototweet.Tweet{}
+		tweetChan <- tweet
+		close(tweetChan)
 	}
 }
 
@@ -50,7 +46,6 @@ func TestInitReceiver(t *testing.T) {
 
 	// First set up the channels
 	doneChan := make(chan bool)
-	defer close(doneChan)
 
 	tweetChan, errChan := InitReceiver(CONNSTR, doneChan)
 	received := false
@@ -61,8 +56,8 @@ L:
 			assert.Fail(t, err.Error())
 			break L
 		case <-tweetChan:
-			doneChan <- true
 			received = true
+			close(doneChan)
 		case <-time.After(1 * time.Second):
 			break L
 		}
