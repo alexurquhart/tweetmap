@@ -15,6 +15,7 @@ func TestInitPublisher(t *testing.T) {
 	errFlag := false
 
 	InitPublisher(CONNSTR, tweetChan, errorChan)
+L:
 	for !errFlag {
 		select {
 		case err := <-errorChan:
@@ -24,6 +25,7 @@ func TestInitPublisher(t *testing.T) {
 			tweet := &prototweet.Tweet{}
 			tweetChan <- tweet
 			close(tweetChan)
+			break L
 		}
 	}
 }
