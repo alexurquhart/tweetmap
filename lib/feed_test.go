@@ -33,8 +33,11 @@ func TestListenToTwitter(t *testing.T) {
 	case <-tweetChan:
 		log.Println("Received tweet")
 	case err := <-errChan:
-		t.Log(err)
-		assert.Fail(t, err.Error())
+		// Determine the error type
+		if _, ok := err.(*ProtoTweetError); !ok {
+			t.Log(err)
+			assert.Fail(t, err.Error())
+		}
 	case <-time.After(time.Minute):
 		assert.Fail(t, "No tweets received in past 60 seconds.")
 	}

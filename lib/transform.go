@@ -1,11 +1,17 @@
 package tweetmap
 
 import (
-	"errors"
 	"github.com/cdn-madness/tweetmap/protobuf"
 	"github.com/darkhelmet/twitterstream"
 	"github.com/golang/protobuf/proto"
 )
+
+// Prototweet Error Type
+type ProtoTweetError struct{}
+
+func (e *ProtoTweetError) Error() string {
+	return "Could not transform tweet to protocol buffer"
+}
 
 // Takes an input tweet from the twitterstream and transform it
 // into a prototweet - a type suitable for transmission over ZMQ
@@ -13,7 +19,7 @@ import (
 func ToProtoTweet(in *twitterstream.Tweet) (out *prototweet.Tweet, err error) {
 	defer func() {
 		if r := recover(); r != nil {
-			err = errors.New("Could not create tweet")
+			err = &ProtoTweetError{}
 		}
 	}()
 
