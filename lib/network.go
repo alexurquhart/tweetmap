@@ -37,29 +37,23 @@ func InitPublisher(connStr string, tweetChan chan *prototweet.Tweet, errorChan c
 			return
 		}
 
-		// Loop indefinitely
-		for {
-			tweet, more := <-tweetChan
-			if more {
-				// Marshall the tweet
-				m, err := proto.Marshal(tweet)
-				if err != nil {
-					errorChan <- err
-					break
-				}
+		for tweet := range tweetChan {
+			m, err := proto.Marshal(tweet)
+			if err != nil {
+				errorChan <- err
+				break
+			}
 
-				// Send the tweet
-				if _, err := pub.Send("TWEET", zmq.SNDMORE); err != nil {
-					errorChan <- err
-					break
-				}
-				if _, err := pub.SendBytes(m, 0); err != nil {
-					errorChan <- err
-				}
-			} else {
-				return
+			// Send the tweet
+			if _, err := pub.Send("TWEET", zmq.SNDMORE); err != nil {
+				errorChan <- err
+				break
+			}
+			if _, err := pub.SendBytes(m, 0); err != nil {
+				errorChan <- err
 			}
 		}
+
 	}(connStr, tweetChan, errorChan)
 
 	return
