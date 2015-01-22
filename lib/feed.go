@@ -8,7 +8,7 @@ import (
 
 // Filter type
 // Functions take a tweet and return true if it should continue being processed
-type TweetFilter func(t *prototweet.Tweet) bool
+type TweetFilter func(t *twitterstream.Tweet) bool
 
 // API keys and extent bounding box coordinates
 type TwitterAPIConfig struct {
@@ -60,10 +60,12 @@ func ListenToTwitter(cfg TwitterAPIConfig, filterFunc TweetFilter, doneChan chan
 					}
 
 					// Filter tweeet and send it off
-					if pTweet, err := ToProtoTweet(tweet); filterFunc(pTweet) && err == nil {
-						tweetChan <- pTweet
-					} else if err != nil {
-						errorChan <- err
+					if filterFunc(tweet) {
+						if pTweet, err := ToProtoTweet(tweet); err != nil {
+							errorChan <- err
+						} else {
+							tweetChan <- pTweet
+						}
 					}
 				}
 			}

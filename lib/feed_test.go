@@ -1,7 +1,6 @@
 package tweetmap
 
 import (
-	"github.com/cdn-madness/tweetmap/protobuf"
 	"github.com/darkhelmet/twitterstream"
 	"github.com/stretchr/testify/assert"
 	"log"
@@ -21,7 +20,7 @@ func TestListenToTwitter(t *testing.T) {
 		NorthWest:      twitterstream.Point{90, 180},
 	}
 
-	filter := func(t *prototweet.Tweet) bool {
+	filter := func(t *twitterstream.Tweet) bool {
 		return true
 	}
 
@@ -29,17 +28,21 @@ func TestListenToTwitter(t *testing.T) {
 	defer close(doneChan)
 	tweetChan, errChan := ListenToTwitter(apiCfg, filter, doneChan)
 
-	select {
-	case <-tweetChan:
-		log.Println("Received tweet")
-	case err := <-errChan:
-		// Determine the error type
-		if _, ok := err.(*ProtoTweetError); !ok {
-			t.Log(err)
-			assert.Fail(t, err.Error())
+L:
+	for {
+		select {
+		case <-tweetChan:
+			log.Println("Received tweet")
+			break L
+		case err := <-errChan:
+			// Determine the error type
+			if _, ok := err.(*ProtoTweetError); !ok {
+				t.Log(err)
+				assert.Fail(t, err.Error())
+			}
+		case <-time.After(time.Minute):
+			assert.Fail(t, "No tweets received in past 60 seconds.")
 		}
-	case <-time.After(time.Minute):
-		assert.Fail(t, "No tweets received in past 60 seconds.")
 	}
 
 }
