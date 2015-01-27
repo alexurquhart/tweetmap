@@ -1,4 +1,5 @@
 test.sh
+testFeed.sh
 *.out
 bower_components
 watcher/*

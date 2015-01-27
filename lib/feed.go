@@ -28,44 +28,34 @@ func ListenToTwitter(cfg TwitterAPIConfig, filterFunc TweetFilter, doneChan chan
 	errorChan := make(chan error)
 
 	go func(cfg TwitterAPIConfig, filterFunc TweetFilter, doneChan chan bool, tweetChan chan *prototweet.Tweet, errorChan chan error) {
-		defer close(tweetChan)
-		defer close(errorChan)
+		client := twitterstream.NewClientTimeout(cfg.ConsumerKey, cfg.ConsumerSecret, cfg.AccessToken, cfg.AccessSecret, 2*time.Hour)
 
-		select {
-		case done, more := <-doneChan:
-			if done || !more {
-				return
+		// Loop indefinitely
+		// TODO - enable tracking to see how often connections are attempted
+		for {
+			// Request the stream
+			stream, err := client.Locations(cfg.SouthEast, cfg.NorthWest)
+
+			// If no connection, then sleep for 30 seconds and try again
+			if err != nil {
+				errorChan <- err
+				time.Sleep(30 * time.Second)
+				continue
 			}
-		default:
-			client := twitterstream.NewClientTimeout(cfg.ConsumerKey, cfg.ConsumerSecret, cfg.AccessToken, cfg.AccessSecret, 2*time.Hour)
 
-			// Loop indefinitely
-			// TODO - enable tracking to see how often connections are attempted
 			for {
-				// Request the stream
-				stream, err := client.Locations(cfg.SouthEast, cfg.NorthWest)
-
-				// If no connection, then sleep for 30 seconds and try again
+				tweet, err := stream.Next()
 				if err != nil {
 					errorChan <- err
-					time.Sleep(30 * time.Second)
-					continue
+					break
 				}
 
-				for {
-					tweet, err := stream.Next()
-					if err != nil {
+				// Filter tweeet and send it off
+				if filterFunc(tweet) {
+					if pTweet, err := ToProtoTweet(tweet); err != nil {
 						errorChan <- err
-						break
-					}
-
-					// Filter tweeet and send it off
-					if filterFunc(tweet) {
-						if pTweet, err := ToProtoTweet(tweet); err != nil {
-							errorChan <- err
-						} else {
-							tweetChan <- pTweet
-						}
+					} else {
+						tweetChan <- pTweet
 					}
 				}
 			}
