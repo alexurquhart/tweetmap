@@ -20,6 +20,19 @@ func queryPast24Hrs(w http.ResponseWriter, r *http.Request) {
 	w.Write(result)
 }
 
+func queryHashtagsPast24Hrs(w http.ResponseWriter, r *http.Request) {
+	result, err := db.Query(tweetmap.TOP_HASH_PAST_24HRS)
+
+	if err != nil {
+		w.WriteHeader(500)
+		fmt.Fprintf(w, "Database Error: %s", err)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.Write(result)
+}
+
 func queryTweetsByWardPast24Hrs(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "ward: %s", mux.Vars(r)["id"])
 }

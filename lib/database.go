@@ -12,6 +12,7 @@ const (
 	TWEETS_PAST_24HRS       int = iota
 	TWEETS_BY_WARD          int = iota
 	HASH_BY_WARD_PAST_24HRS int = iota
+	TOP_HASH_PAST_24HRS     int = iota
 )
 
 type Database struct {
@@ -99,6 +100,9 @@ func (Db *Database) Query(queryType int, args ...interface{}) ([]byte, error) {
 	case TWEETS_PAST_24HRS:
 		return Db.tweetsPast24Hrs()
 		break
+	case TOP_HASH_PAST_24HRS:
+		return Db.top25HashtagsPast24Hrs()
+		break
 	}
 	return nil, errors.New("Invalid query type")
 }
@@ -107,6 +111,16 @@ func (Db *Database) Query(queryType int, args ...interface{}) ([]byte, error) {
 func (Db Database) tweetsPast24Hrs() ([]byte, error) {
 	var result string
 	err := Db.db.QueryRow("SELECT * FROM \"V_tweetsPast24Hrs\";").Scan(&result)
+	if err != nil {
+		return nil, err
+	}
+	return []byte(result), nil
+}
+
+// Returns the top 25 hashtags for the past 24 hours
+func (Db Database) top25HashtagsPast24Hrs() ([]byte, error) {
+	var result string
+	err := Db.db.QueryRow("SELECT * FROM \"V_top25HashtagsPast24Hours\";").Scan(&result)
 	if err != nil {
 		return nil, err
 	}
