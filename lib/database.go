@@ -104,11 +104,7 @@ func (Db *Database) Query(queryType int, args ...interface{}) ([]byte, error) {
 }
 
 // Returns the total number of tweets per hour
-<<<<<<< HEAD
 func (Db Database) tweetsPast24Hrs() ([]byte, error) {
-=======
-func (Db *Database) tweetsPast24Hrs() ([]byte, error) {
->>>>>>> 3092ef1d2fba89209b32d25d117c4fd9915eecef
 	var result string
 	err := Db.db.QueryRow("SELECT * FROM \"V_tweetsPast24Hrs\";").Scan(&result)
 	if err != nil {
