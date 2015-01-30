@@ -1,0 +1,25 @@
+{
+  "name": "tweetmap",
+  "version": "0.0.1",
+  "homepage": "https://github.com/cdn-madness/tweetmap",
+  "authors": [
+    "Alex Urquhart <alexurquhart@gmail.com>"
+  ],
+  "description": "Ottawa Tweet Mapper",
+  "main": "index.html",
+  "keywords": [
+    "tweet"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Leaflet.awesome-markers": "~2.0.2",
+    "flot": "~0.8.3"
+  }
+}
