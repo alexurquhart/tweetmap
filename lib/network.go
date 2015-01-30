@@ -102,31 +102,24 @@ func InitReceiver(connStr string, doneChan chan bool) (chan *prototweet.Tweet, c
 
 		// Loop indefinitely
 		for {
-			select {
-			case msg, more := <-doneChan:
-				if msg || !more {
-					return
-				}
-			default:
-				// Receive the tweet
-				sub.Recv(0)
-				bytes, err := sub.RecvBytes(0)
+			// Receive the tweet
+			sub.Recv(0)
+			bytes, err := sub.RecvBytes(0)
 
-				if err != nil {
-					errorChan <- err
-					continue
-				}
-
-				// Attempt to unmarshall the bytes
-				tweet := &prototweet.Tweet{}
-				if err := proto.Unmarshal(bytes, tweet); err != nil {
-					errorChan <- err
-					continue
-				}
-
-				// Send the tweet on the outbound channel!
-				tweetChan <- tweet
+			if err != nil {
+				errorChan <- err
+				continue
 			}
+
+			// Attempt to unmarshall the bytes
+			tweet := &prototweet.Tweet{}
+			if err := proto.Unmarshal(bytes, tweet); err != nil {
+				errorChan <- err
+				continue
+			}
+
+			// Send the tweet on the outbound channel!
+			tweetChan <- tweet
 		}
 	}(tweetChan, errorChan, doneChan)
 
