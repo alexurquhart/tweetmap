@@ -5,29 +5,18 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
-	"os"
 )
 
-var tdb *tweetmap.TweetDb
+var db *tweetmap.Database
 
 func main() {
-	// Get environment variables
-	pghost := os.Getenv("PGHOST")
-	pgport := os.Getenv("PGPORT")
-	db := os.Getenv("PGDATABASE")
-	user := os.Getenv("PGUSER")
-	pass := os.Getenv("PGPASSWORD")
-	schema := os.Getenv("TWEET_SCHEMA")
-	webport := os.Getenv("WEBPORT")
-
-	tdb = new(tweetmap.TweetDb)
-
-	// Initialize the tweet database
-	if err := tdb.Init(user, db, pghost, pass, pgport, schema); err != nil {
-		log.Printf("Error initializing tweet database: %s", err)
+	var err error
+	db, err = tweetmap.NewDatabase()
+	if err != nil {
+		log.Printf("Error connecting to database: %s", err)
 		return
 	}
-	defer tdb.Db.Close()
+	defer db.Disconnect()
 
 	// Start the server
 	router := mux.NewRouter()
@@ -38,5 +27,5 @@ func main() {
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./www/")))
 
 	http.Handle("/", router)
-	http.ListenAndServe(webport, nil)
+	http.ListenAndServe(":8765", nil)
 }

@@ -1,0 +1,68 @@
+package tweetmap
+
+import (
+	"database/sql"
+	"errors"
+	_ "github.com/lib/pq"
+	"os"
+)
+
+type Database struct {
+	db *sql.DB
+}
+
+// Query types
+const (
+	TWEETS_PER_HOUR int = iota
+	TWEETS_BY_WARD  int = iota
+)
+
+// Returns true if currently connected to the database
+func (Db *Database) isConnected() bool {
+	if Db.db == nil {
+		return false
+	}
+
+	if err := Db.db.Ping(); err != nil {
+		return false
+	}
+
+	return true
+}
+
+// Connects to the database
+// Requires the PGUSER, PGPASSWORD, PGHOST, PGPORT, and PGDATABASE environment variables
+// to be set
+func (Db *Database) Connect() error {
+	if Db.isConnected() {
+		return errors.New("Already connected to the database")
+	}
+
+	var connStr string
+	connStr = "user=" + os.Getenv("PGUSER") + " "
+	connStr += "password=" + os.Getenv("PGPASSWORD") + " "
+	connStr += "host=" + os.Getenv("PGHOST") + " "
+	connStr += "port=" + os.Getenv("PGPORT") + " "
+	connStr += "dbname=" + os.Getenv("PGDATABASE")
+
+	var err error
+	Db.db, err = sql.Open("postgres", connStr)
+
+	if err != nil {
+		return err
+	}
+
+	if Db.isConnected() {
+		return nil
+	} else {
+		return errors.New("Could not connect to the database")
+	}
+}
+
+// Wrapper for DB.Close()
+func (Db *Database) Disconnect() {
+	Db.db.Close()
+}
+
+// Query
+// Returns the result of a query, in marshalled JSON, which then can be served to the client

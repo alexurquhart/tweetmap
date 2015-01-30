@@ -103,17 +103,23 @@ function AppViewModel() {
 		// Get the data
 		$.getJSON('/past24Hours', function(data) {
 			var series = $.map(data, function(el) {
-				// Subtract 5 hours (convert to central time)
-				var date = new Date(el.hour).getTime() - 1800000000;
+				var date = new Date(el.hour)
 				return [[date, el.count]];
 			});
+
+            console.log(series)
+
+            // Create the graph
 			$.plot('#tweetsLast24Hours',
 				[{
 					data: series,
 					color: '#AAA'
 				}], {
 				color: 0,
-				xaxis: {mode: 'time'},
+				xaxis: {
+                    mode: 'time',
+                    timezone: 'browser'
+                },
 				lines: {show: true}
 			});
 		});

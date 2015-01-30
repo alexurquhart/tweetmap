@@ -15,6 +15,10 @@
 			"Rev": "60976d353effd937b53a171e7493148a9969e39a"
 		},
 		{
+			"ImportPath": "github.com/lib/pq",
+			"Rev": "dc911180b321e9b7e08aa94f20939ef0109b9b24"
+		},
+		{
 			"ImportPath": "github.com/pebbe/zmq4",
 			"Rev": "b82b778e175510c98b2515834108ee8ad0c88819"
 		},
