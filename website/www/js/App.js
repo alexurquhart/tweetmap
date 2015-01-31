@@ -102,25 +102,55 @@ function AppViewModel() {
 	self.createTweets24HrsGraph = function() {
 		// Get the data
 		$.getJSON('/past24Hours', function(data) {
-			var series = $.map(data, function(el) {
+			var current = $.map(data, function(el) {
 				var date = new Date(el.hour)
 				return [[date, el.count]];
 			});
 
-            console.log(series)
+			var average = $.map(data, function(el) {
+				var date = new Date(el.hour)
+				return [[date, el.average]];
+			});
+
 
             // Create the graph
 			$.plot('#tweetsLast24Hours',
-				[{
-					data: series,
-					color: '#AAA'
-				}], {
+				[
+					{
+						data: average,
+						color: '#EFEFFF',
+						label: "Wk Avg"
+					},
+					{
+						data: current,
+						color: '#99F',
+						label: 'Current'
+					}
+
+				], {
 				color: 0,
+				grid: {
+					hoverable: true
+				},
 				xaxis: {
                     mode: 'time',
                     timezone: 'browser'
                 },
 				lines: {show: true}
+			});
+
+			// Bind the tooltip
+			$("#tweetsLast24Hours").bind("plothover", function (event, pos, item) {
+				if (item) {
+					date = item.series.label + ": " + item.datapoint[1]
+
+
+					$("#tooltip").html(date)
+						.css({top: item.pageY-15, left: item.pageX+5})
+						.fadeIn(200);
+				} else {
+					$("#tooltip").hide();
+				}
 			});
 		});
 	};
