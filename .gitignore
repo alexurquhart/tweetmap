@@ -6,5 +6,4 @@ watcher/*
 database/postgres_data
 */coverage.html
 *.sh
-*.sql
 *.swp
