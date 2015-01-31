@@ -129,6 +129,9 @@ function AppViewModel() {
 
 				], {
 				color: 0,
+				legend: {
+					position: 'sw'
+				},
 				grid: {
 					hoverable: true
 				},
