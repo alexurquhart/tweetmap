@@ -10,6 +10,8 @@ import (
 var db *tweetmap.Database
 
 func main() {
+	port := ":8765"
+
 	var err error
 	db, err = tweetmap.NewDatabase()
 	if err != nil {
@@ -28,5 +30,6 @@ func main() {
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./www/")))
 
 	http.Handle("/", router)
-	http.ListenAndServe(":8765", nil)
+	log.Println("Starting server on port: " + port)
+	http.ListenAndServe(port, nil)
 }
