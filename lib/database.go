@@ -99,10 +99,10 @@ func (Db *Database) Query(queryType int, args ...interface{}) ([]byte, error) {
 	switch queryType {
 	case TWEETS_PAST_24HRS:
 		return Db.tweetsPast24Hrs()
-		break
 	case TOP_HASH_PAST_24HRS:
 		return Db.top25HashtagsPast24Hrs()
-		break
+	case TWEETS_BY_WARD:
+		return Db.tweetsByWard()
 	}
 	return nil, errors.New("Invalid query type")
 }
@@ -121,6 +121,15 @@ func (Db Database) tweetsPast24Hrs() ([]byte, error) {
 func (Db Database) top25HashtagsPast24Hrs() ([]byte, error) {
 	var result string
 	err := Db.db.QueryRow("SELECT * FROM \"V_top25HashtagsPast24Hours\";").Scan(&result)
+	if err != nil {
+		return nil, err
+	}
+	return []byte(result), nil
+}
+
+func (Db Database) tweetsByWard() ([]byte, error) {
+	var result string
+	err := Db.db.QueryRow("SELECT * FROM \"V_tweetsByWardDailyChange\";").Scan(&result)
 	if err != nil {
 		return nil, err
 	}

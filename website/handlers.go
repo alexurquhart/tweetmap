@@ -7,9 +7,7 @@ import (
 	"net/http"
 )
 
-func queryPast24Hrs(w http.ResponseWriter, r *http.Request) {
-	result, err := db.Query(tweetmap.TWEETS_PAST_24HRS)
-
+func writeResult(res []byte, err error, w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(500)
 		fmt.Fprintf(w, "Database Error: %s", err)
@@ -17,24 +15,27 @@ func queryPast24Hrs(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.Write(result)
+	w.Write(res)
+}
+
+func queryPast24Hrs(w http.ResponseWriter, r *http.Request) {
+	result, err := db.Query(tweetmap.TWEETS_PAST_24HRS)
+	writeResult(result, err, w, r)
 }
 
 func queryHashtagsPast24Hrs(w http.ResponseWriter, r *http.Request) {
 	result, err := db.Query(tweetmap.TOP_HASH_PAST_24HRS)
-
-	if err != nil {
-		w.WriteHeader(500)
-		fmt.Fprintf(w, "Database Error: %s", err)
-		return
-	}
-
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.Write(result)
+	writeResult(result, err, w, r)
 }
 
-func queryTweetsByWardPast24Hrs(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "ward: %s", mux.Vars(r)["id"])
+func queryWardsPast24Hrs(w http.ResponseWriter, r *http.Request) {
+	result, err := db.Query(tweetmap.TWEETS_BY_WARD)
+	writeResult(result, err, w, r)
+}
+
+func queryTweetsByWard(w http.ResponseWriter, r *http.Request) {
+	result, err := db.Query(tweetmap.TWEETS_BY_WARD)
+	writeResult(result, err, w, r)
 }
 
 func queryHashtagsByWard(w http.ResponseWriter, r *http.Request) {

@@ -101,7 +101,7 @@ function AppViewModel() {
 	// Creates the tweets/24 hrs graph
 	self.createTweets24HrsGraph = function() {
 		// Get the data
-		$.getJSON('/past24Hours', function(data) {
+		$.getJSON('/tweets/past24hours', function(data) {
 			var current = $.map(data, function(el) {
 				var date = new Date(el.hour)
 				return [[date, el.count]];
@@ -124,7 +124,7 @@ function AppViewModel() {
 					{
 						data: current,
 						color: '#99F',
-						label: 'Current'
+						label: 'Today'
 					}
 
 				], {
