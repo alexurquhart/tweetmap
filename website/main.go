@@ -24,7 +24,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/tweets/past24hours", queryPast24Hrs)
 	router.HandleFunc("/tweets/ward/{id:[0-9]+}", queryTweetsByWard)
-	router.HandleFunc("/hashtags/past24Hours", queryHashtagsPast24Hrs)
+	router.HandleFunc("/hashtags/past24hours", queryHashtagsPast24Hrs)
 	router.HandleFunc("/hashtags/ward/{id:[0-9]+}", queryHashtagsByWard)
 	router.HandleFunc("/wards/past24hours", queryWardsPast24Hrs)
 
