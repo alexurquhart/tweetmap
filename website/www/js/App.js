@@ -188,7 +188,9 @@ function AppViewModel() {
 			// Bind the tooltip
 			$("#tweetsLast24Hours").bind("plothover", function (event, pos, item) {
 				if (item) {
-					date = item.series.label + ": " + item.datapoint[1]
+                    hour = new Date(item.datapoint[0])
+                    str = (hour.getDay() + 1) + "/" + (hour.getMonth() + 1) + "/" + hour.getFullYear() + " @ " + hour.getHours() + ":00"
+					date = str + "<br>" + item.series.label + ": " + item.datapoint[1]
 
 
 					$("#tooltip").html(date)
