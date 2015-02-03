@@ -10,8 +10,50 @@ function Tweet(marker, data) {
 	self.pictures = data.pictures;
 }
 
+// Download and join the wards geoJSON and latest activity statistics
+// TODO - add error handling - convert to jQuery functions for getting JSON
+function wardStatistics(cb) {
+	d3.json('js/wards.json', function(collection) {
+
+		d3.json('/wards/past24hours', function(stats) {
+
+			// Join the stats to the wards json
+			$.each(collection.features, function(fIndex, fValue) {
+				$.each(stats, function(sIndex, sValue) {
+					if (sValue.wardId === fValue.properties.id) {
+						fValue.properties.past24hrs = sValue.past24Hrs;
+						fValue.properties.dayChange = sValue.dayChange;
+					}
+				});
+			});
+			cb(collection);
+		});
+	});
+}
+
+// Given an array of features - create a quantized scale with 5 classes
+// showing the # of tweets in the past 24 hours
+function activityScale(collection) {
+	var colors = [
+		'rgba(122,186,242,0.3)',
+		'rgba(65,146,217,0.3)',
+		'rgba(0,116,217,0.3)',
+		'rgba(0,75,141,0.3)',
+		'rgba(0,48,90,0.3)'
+	]
+
+	var domain = $.map(collection.features, function(el, index) {
+		return el.properties.past24hrs;
+	});
+	domain = domain.sort(d3.ascending);
+
+	return d3.scale.quantize()
+			.domain(domain)
+			.range(d3.range(5).map(function(i) { return colors[i] }));
+}
+
 // Create the chloropleth map
-function chloropleth(map) {
+function createChloropleth(map) {
 	var svg = d3.select(map.getPanes().overlayPane).append('svg');
 	var g = svg.append('g').attr('class', 'leaflet-zoom-hide');
 
@@ -20,16 +62,19 @@ function chloropleth(map) {
 		this.stream.point(point.x, point.y);
 	}
 
-	d3.json('js/wards.json', function(collection) {
+	// Get the ward statistics
+	wardStatistics(function(collection) {
 		var transform = d3.geo.transform({point: project});
 		var path = d3.geo.path().projection(transform);
+
+		var scale = activityScale(collection);
 
 		var feature = g.selectAll('path')
 			.data(collection.features)
 			.enter()
 			.append('path')
-			.attr('fill', 'rgba(0, 0, 0, 0.5)')
-			.attr('stroke', 'rgba(0, 0, 0, 0.5)');
+			.attr('fill', function(d) { return scale(d.properties.past24hrs); })
+			.attr('stroke', 'rgba(0, 22, 41, 0.3)');
 
 		map.on('viewreset', reset);
 		reset();
@@ -49,6 +94,10 @@ function chloropleth(map) {
 			feature.attr("d", path);
 		}
 	});
+}
+
+function clearChloropleth(map) {
+
 }
 
 function AppViewModel() {
@@ -75,7 +124,7 @@ function AppViewModel() {
 	    maxZoom: 16
 	}).addTo(self.Map);
 
-	chloropleth(self.Map);
+	createChloropleth(self.Map);
 
 	// Fetches the online user count
 	self.updateOnlineCount = function() {
