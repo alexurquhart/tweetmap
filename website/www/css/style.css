@@ -61,3 +61,26 @@ html, body {
 	height: 150px;
 }
 
+.legend-cell {
+	float: left;
+	width: 50%;
+	min-width: 25%;
+	height: 25px;
+	border-top: 1px solid #000;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	margin: 0;
+}
+
+.legend-cell:last-of-type {
+	border-bottom: 1px solid #000;
+}
+
+.legend-label {
+	text-align: left;
+	padding-left: 10px;
+	width: 50%;
+	mid-width: 90px;
+	float: right;
+}
+
