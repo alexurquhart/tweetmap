@@ -41,7 +41,7 @@ func main() {
 	router.HandleFunc("/hashtags/ward/{id:[0-9]+}", queryHashtagsByWard)
 	router.HandleFunc("/wards/past24hours", queryWardsPast24Hrs)
 
-	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./www/")))
+	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./www/dist/")))
 
 	http.Handle("/", router)
 	Info.Println("Starting server on port: " + port)

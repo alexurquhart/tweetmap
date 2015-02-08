@@ -1,14 +1,16 @@
+'use strict'
+
 // Class representing a tweet that has been received by the websocket
 function Tweet(marker, data) {
 	var self = this;
 
 	self.marker = marker;
-	self.id = data.id;
+	self.id = data.id; 
 	self.author = data.author;
 	self.text = data.text;
 	self.hashtags = data.hashtags;
 	self.pictures = data.pictures;
-}
+} 
 
 // Download and join the wards geoJSON and latest activity statistics
 // TODO - add error handling - convert to jQuery functions for getting JSON
@@ -141,10 +143,6 @@ function createChloropleth(map) {
 			feature.attr("d", path);
 		}
 	});
-}
-
-function clearChloropleth(map) {
-
 }
 
 function AppViewModel() {
@@ -375,7 +373,7 @@ $(function() {
 	vm.createTweets24HrsGraph();
 
 	listenForTweets('ws://tweet.alexurquhart.com/ws/', vm.addTweet);
-	//listenForFakeTweets(vm.addTweet);
+	// listenForFakeTweets(vm.addTweet);
 
 	ko.applyBindings(vm);
 });

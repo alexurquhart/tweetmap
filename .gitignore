@@ -1,7 +1,8 @@
+website/website
 */loaderio*
-test.sh
-testFeed.sh
 *.out
+node_modules
+dist
 bower_components
 watcher/*
 database/postgres_data
