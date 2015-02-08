@@ -120,7 +120,7 @@ function createChloropleth(map) {
 			.data(collection.features)
 			.enter()
 			.append('path')
-			.attr('fill', function(d) { return scale(d.properties.past24hrs); })
+			.attr('fill', function(d) { return scale(d.properties.dayChange); })
 			.attr('stroke', 'rgba(0, 22, 41, 0.3)');
 
 		map.on('viewreset', reset);
