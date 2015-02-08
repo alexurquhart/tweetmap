@@ -11,13 +11,19 @@ func writeResult(res []byte, err error, w http.ResponseWriter, r *http.Request) 
 	if err != nil {
 		w.WriteHeader(500)
 		fmt.Fprintf(w, "Database Error: %s", err)
+
+		if *debug {
+			Error.Printf("Database Error: %s\n", err)
+		}
 		return
 	}
 
+	if *debug {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		Info.Printf("Request:\t%s\tFrom: %s\n", r.RequestURI, r.RemoteAddr)
+	}
+
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.Header().Set("Cache-Control", "no-store, must-revalidate")
-	w.Header().Set("Pragma", "no-cache")
-	w.Header().Set("Expires", "0")
 	w.Write(res)
 }
 

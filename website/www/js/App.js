@@ -31,25 +31,46 @@ function wardStatistics(cb) {
 	});
 }
 
-// Given an array of features - create a quantized scale with 5 classes
-// showing the # of tweets in the past 24 hours
-function activityScale(collection) {
-	var colors = [
-		'rgba(122,186,242,0.3)',
-		'rgba(65,146,217,0.3)',
-		'rgba(0,116,217,0.3)',
-		'rgba(0,75,141,0.3)',
-		'rgba(0,48,90,0.3)'
-	]
+// Given a domain array, scale, colors and div id, generate a legend
+function generateLegend(scale, id) {
+	var domain = scale.domain().reverse();
+	console.log(domain)
 
-	var domain = $.map(collection.features, function(el, index) {
-		return el.properties.past24hrs;
+	// Go through each color and return the sorted domain of values that corresponds to each class
+	var breaks = $.map(scale.range(), function(color) {
+		var current = []
+		for (i = domain[0]; i <= domain[1]; i++) {
+			if (scale(i) == color) {
+				current.push(i);
+			}
+		}
+
+		return {
+			color: color,
+			min: d3.min(current),
+			max: d3.max(current),
+		}
 	});
-	domain = domain.sort(d3.ascending);
 
-	return d3.scale.quantize()
-			.domain(domain)
-			.range(d3.range(5).map(function(i) { return colors[i] }));
+	var row = d3.select('#' + id)
+		.selectAll('div')
+		.data(breaks)
+		.enter().append('div')
+		.classed('legend-row clearfix', true)
+
+	// Add the legend cell
+	row.append('div')
+		.classed('legend-cell', true)
+		.style('background-color', function(d) {
+			// Extract the RGB value from the RGBA string
+			return d.color;
+		})
+
+	row.append('div')
+		.classed('legend-label', true)
+		.text(function(d) {
+			return d.min + ' to ' + d.max;
+		});
 }
 
 // Create the chloropleth map
@@ -67,7 +88,33 @@ function createChloropleth(map) {
 		var transform = d3.geo.transform({point: project});
 		var path = d3.geo.path().projection(transform);
 
-		var scale = activityScale(collection);
+		// Set up the colors
+		var colors = [
+			'rgba(241,238,246,0.3)',
+			'rgba(189,201,225,0.3)',
+			'rgba(116,169,207,0.3)',
+			'rgba(43,140,190,0.3)',
+			'rgba(4,90,141,0.3)'
+		].reverse();
+
+		var colors2 = [
+			'rgba(202,0,32,0.3)',
+			'rgba(244,165,130,0.3)',
+			'rgba(247,247,247,0.3)',
+			'rgba(146,197,222,0.3)',
+			'rgba(5,113,176,0.3)'
+		].reverse();
+
+		var domain = $.map(collection.features, function(el, index) {
+			return el.properties.past24hrs;
+		});
+		domain = domain.sort(d3.descending);
+
+		var scale = d3.scale.quantize()
+			.domain(domain)
+			.range(d3.range(colors.length).map(function(i) { return colors[i] }));
+
+		generateLegend(scale, 'legend');
 
 		var feature = g.selectAll('path')
 			.data(collection.features)
