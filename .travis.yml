@@ -3,18 +3,25 @@ addons:
     - postgresql: "9.3"
 before_install:
     - wget https://protobuf.googlecode.com/svn/rc/protobuf-2.6.0.tar.gz
-    - tar -xzvf protobuf-2.6.0.tar.gz
     - wget http://download.zeromq.org/zeromq-4.0.5.tar.gz
+    - wget http://nodejs.org/dist/v0.12.0/node-v0.12.0-linux-x64.tar.gz
     - tar -xzvf zeromq-4.0.5.tar.gz
+    - tar -xzvf protobuf-2.6.0.tar.gz
 
     - go get github.com/tools/godep
     - go get golang.org/x/tools/cmd/cover
     - go get github.com/mattn/goveralls
     - mkdir dist
 install:
-    - sudo apt-get install -y uuid-dev nodejs
+    - sudo apt-get install -y uuid-dev
     - cd protobuf-2.6.0 && ./configure --prefix=/usr && make && sudo make install && cd ..
     - cd zeromq-4.0.5 && ./configure && make && sudo make install && sudo ldconfig && cd ..
+    
+    - sudo tar -xzvf node-v0.12.0-linux-x64.tar.gz -C ~/local/node --strip-components=1
+    - echo 'export PATH=$HOME/local/node/bin:$PATH' >> ~/.bashrc
+    - echo 'export NODE_PATH=$HOME/local/node/lib/node_modules' >> ~/.bashrc
+    - .~/.bashrc
+    
     - cd lib && godep restore && cd ..
     - cd website/www && sudo npm install -g grunt-cli && npm install && cd ..
     - psql -U postgres < database/schema.sql
