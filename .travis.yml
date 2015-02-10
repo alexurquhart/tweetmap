@@ -17,9 +17,10 @@ install:
     - cd protobuf-2.6.0 && ./configure --prefix=/usr && make && sudo make install && cd ..
     - cd zeromq-4.0.5 && ./configure && make && sudo make install && sudo ldconfig && cd ..
     
-    - sudo tar -xzvf node-v0.12.0-linux-x64.tar.gz -C ~/local/node --strip-components=1
-    - echo 'export PATH=$HOME/local/node/bin:$PATH' >> ~/.bashrc
-    - echo 'export NODE_PATH=$HOME/local/node/lib/node_modules' >> ~/.bashrc
+    - mkdir node
+    - sudo tar -xzvf node-v0.12.0-linux-x64.tar.gz -C node/ --strip-components=1
+    - echo 'export PATH=$HOME/node/bin:$PATH' >> ~/.bashrc
+    - echo 'export NODE_PATH=$HOME/node/lib/node_modules' >> ~/.bashrc
     - .~/.bashrc
     
     - cd lib && godep restore && cd ..
