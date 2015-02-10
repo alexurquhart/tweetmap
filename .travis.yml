@@ -1,6 +1,6 @@
 language: go
 addons:
-	postgresql: "9.3"
+    - postgresql: "9.3"
 before_install:
     - wget https://protobuf.googlecode.com/svn/rc/protobuf-2.6.0.tar.gz
     - tar -xzvf protobuf-2.6.0.tar.gz
