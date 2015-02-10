@@ -1,5 +1,4 @@
-/// <reference path="lib/knockout.d.ts" />
+/// <reference path="lib/knockout.d.ts"/>
+/// <reference path="Feed.ts"/>
 
-function Test() {
-	alert(1);
-}
+class ViewModel {}

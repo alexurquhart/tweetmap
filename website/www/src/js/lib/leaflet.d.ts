@@ -3,7 +3,21 @@
 // Definitions by: Vladimir Zotov <https://github.com/rgripper>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
- 
+ declare module L {
+
+ 	export interface AwesomeMarker extends IconOptions {
+ 		icon: string;
+ 		prefix: string;
+ 		markerColor: string;
+ 	}
+
+ 	module AwesomeMarkers {
+ 		function icon(marker: AwesomeMarker): Icon;
+ 	}
+
+ }
+
+
 declare module L {
 
 		export interface AttributionOptions {

@@ -17,14 +17,13 @@ module.exports = function(grunt) {
 			files: {
 			src: ['src/**/*.ts'],
 			dest: 'dist/js/App.js',
-		},
+			},
 			options: {
 				module        : 'commonjs',
 				target        : 'es5',
 				basePath      : 'src/',
 				sourceMap     : true,
-				declaration   : true,
-				removeComments: false,
+				removeComments: true,
 				references    : ['src/js/lib/**/*.d.ts']
 			}
 		},

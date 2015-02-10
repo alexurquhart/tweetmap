@@ -1,0 +1,522 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"A",
+				"And	window.Expression"
+			],
+			[
+				"html",
+				"htmlmin"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Gruntfile.js",
+			"settings":
+			{
+				"buffer_size": 2615,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "/// <reference path=\"lib/knockout.d.ts\" />\n\nclass Tweet {\n	\n}\n\nvar a : ",
+			"file": "src/js/App.ts",
+			"file_size": 94,
+			"file_write_time": 130680026045740780,
+			"settings":
+			{
+				"buffer_size": 71,
+				"line_ending": "Unix",
+				"name": "/// <reference path=\"knockout-2.2.d.ts\" />"
+			}
+		},
+		{
+			"file": "tweetmap.sublime-project",
+			"settings":
+			{
+				"buffer_size": 166,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/lib/knockout.d.ts",
+			"settings":
+			{
+				"buffer_size": 21731,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "class ViewModel {\n	\n}\n",
+			"file": "src/js/ViewModel.ts",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 22,
+				"line_ending": "Unix",
+				"name": "class ViewModel {"
+			}
+		},
+		{
+			"file": "src/js/App.js",
+			"settings":
+			{
+				"buffer_size": 9715,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 316.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"INSTAL",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"git",
+				"Git: Status"
+			],
+			[
+				"INSTA",
+				"Package Control: Install Package"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 601.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/alex/Desktop/tweetmap/website/www"
+	],
+	"file_history":
+	[
+		"/home/alex/Desktop/tweetmap/website/www/tweetmap.sublime-project",
+		"/home/alex/.config/sublime-text-3/Packages/T3S/README.md",
+		"/home/alex/Desktop/tweetmap/website/www/dist/js/App.d.ts",
+		"/home/alex/Desktop/tweetmap/website/www/dist/css/style.less",
+		"/home/alex/Desktop/tweetmap/website/www/src/index.html",
+		"/home/alex/Desktop/tweetmap/website/www/dist/js/App.js",
+		"/home/alex/Desktop/tweetmap/website/www/tslint.json",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/grunt-inject/tasks/index.js",
+		"/home/alex/Desktop/tweetmap/website/www/src/js/lib/inject.js",
+		"/home/alex/Desktop/tweetmap/website/www/dist/index.html",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/grunt-inject/.npmignore",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/grunt-contrib-htmlmin/node_modules/html-minifier/node_modules/uglify-js/test/run-tests.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/lib/core/resolvers/GitResolver.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/.bin/bower",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/node_modules/decompress-zip/.editorconfig",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/grunt-contrib-less/node_modules/less/.idea/modules.xml",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/grunt-contrib-less/tasks/less.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/LICENSE",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/tslint/docs/cli-options-verbose.txt",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/node_modules/inquirer/node_modules/rx/src/core/linq/observable/_elementatordefault.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/tslint/build/rules/noDebuggerRule.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/grunt-contrib-less/node_modules/less/test/css/no-output.css",
+		"/home/alex/Desktop/tweetmap/website/www/dist/bower_components/flot/NEWS.md",
+		"/home/alex/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/alex/Desktop/tweetmap/website/www/src/js/lib/d3.d.ts",
+		"/home/alex/Desktop/tweetmap/website/www/src/js/lib/knockout.d.ts",
+		"/home/alex/Desktop/tweetmap/website/www/src/js/lib/leaflet.d.ts",
+		"/home/alex/Desktop/tweetmap/website/www/js/App.js",
+		"/home/alex/.config/sublime-text-3/Packages/Alignment/Default (Linux).sublime-keymap",
+		"/home/alex/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/alex/Desktop/tweetmap/website/www/Gruntfile",
+		"/home/alex/.config/sublime-text-3/Packages/User/Base File.sublime-settings",
+		"/home/alex/.config/sublime-text-3/Packages/User/JavaScript.sublime-settings",
+		"/home/alex/.config/sublime-text-3/Packages/Alignment/Base File.sublime-settings",
+		"/home/alex/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/alex/Desktop/tweetmap/website/www/src/bower.json",
+		"/home/alex/Desktop/tweetmap/website/www/src/js/wards.json",
+		"/home/alex/Desktop/tweetmap/website/www/src/bower_components/flot/jquery.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/grunt-contrib-less/node_modules/less/lib/less/visitors/join-selector-visitor.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/lib/renderers/JsonRenderer.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/grunt-contrib-htmlmin/node_modules/html-minifier/node_modules/clean-css/lib/selectors/optimizers/simple.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/grunt-contrib-htmlmin/node_modules/html-minifier/node_modules/clean-css/lib/selectors/optimizer.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/grunt-contrib-htmlmin/node_modules/html-minifier/node_modules/cli/node_modules/exit/test/fixtures/log-broken.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/tslint/.tscache/core_rules/hashes/oneLineRule.ts-97b1d98a1397a5d45f33779d9b5c278e",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/grunt-contrib-htmlmin/node_modules/html-minifier/node_modules/uglify-js/node_modules/optimist/example/line_count_options.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/node_modules/inquirer/node_modules/cli-color/node_modules/memoizee/node_modules/event-emitter/has-listeners.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/node_modules/cardinal/test/cardinal-highlight-json.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/CHANGELOG.md",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/node_modules/opn/xdg-open",
+		"/home/alex/Desktop/tweetmap/website/www/src/bower_components/jquery/src/ajax/xhr.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/tslint/build/rules/maxLineLengthRule.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/node_modules/tar-fs/test/fixtures/a/hello.txt",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/templates/std/conflict-resolved.std",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/lib/util/createError.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/faye-websocket/lib/faye/websocket/hybi_parser/stream_reader.js",
+		"/home/alex/Desktop/tweetmap/website/www/node_modules/bower/node_modules/cardinal/test/cardinal-highlight-string.js",
+		"/home/alex/Desktop/tweetmap/website/www/package.json"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"ViewModel",
+			"false",
+			" \n",
+			"less",
+			"single",
+			"tslint",
+			"less",
+			"copy",
+			"less",
+			"default",
+			"alignment",
+			"copy",
+			"');\n",
+			"tslint",
+			"amd",
+			"watch",
+			"css",
+			"concat",
+			"true"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Gruntfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2615,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								507,
+								507
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 135.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/js/App.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 71,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								71,
+								71
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"auto_name": "/// <reference path=\"knockout-2.2.d.ts\" />",
+							"extensions":
+							[
+								"ts"
+							],
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "tweetmap.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 166,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								88,
+								88
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/js/lib/knockout.d.ts",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 21731,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								20661,
+								20661
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 8968.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/js/ViewModel.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 22,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								22,
+								22
+							]
+						],
+						"settings":
+						{
+							"auto_name": "class ViewModel {",
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/js/App.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9715,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								133,
+								133
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "tweetmap.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"grunt-inject/tasks",
+				"node_modules/grunt-inject/tasks/index.js"
+			],
+			[
+				"wards",
+				"src/js/wards.json"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+		],
+		"width": 687.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 225.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

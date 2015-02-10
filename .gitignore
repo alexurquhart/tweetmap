@@ -4,6 +4,7 @@ website/website
 node_modules
 dist
 bower_components
+types/*
 watcher/*
 database/postgres_data
 */coverage.html
