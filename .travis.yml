@@ -19,9 +19,8 @@ install:
     
     - mkdir node
     - sudo tar -xzvf node-v0.12.0-linux-x64.tar.gz -C node/ --strip-components=1
-    - echo 'export PATH=$HOME/node/bin:$PATH' >> ~/.bashrc
-    - echo 'export NODE_PATH=$HOME/node/lib/node_modules' >> ~/.bashrc
-    - .~/.bashrc
+    - export PATH=$HOME/node/bin:$PATH
+    - export NODE_PATH=$HOME/node/lib/node_modules
     
     - cd lib && godep restore && cd ..
     - cd website/www && sudo npm install -g grunt-cli && npm install && cd ..
