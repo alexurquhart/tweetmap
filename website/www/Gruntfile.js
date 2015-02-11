@@ -15,22 +15,21 @@ module.exports = function(grunt) {
 
 		typescript: {
 			files: {
-			src: ['src/**/*.ts'],
-			dest: 'dist/js/App.js',
+				src: ['src/**/*.ts', '!src/js/types/**/*'],
+				dest: 'dist/js/App.js',
 			},
 			options: {
 				module        : 'commonjs',
 				target        : 'es5',
 				basePath      : 'src/',
 				sourceMap     : true,
-				removeComments: true,
-				references    : ['src/js/lib/**/*.d.ts']
+				removeComments: true
 			}
 		},
 
 		tslint: {
 			files: {
-				src: ['src/**/*.ts', '!src/js/lib/**/*']
+				src: ['src/**/*.ts', '!src/js/types/**/*', '!src/js/lib/**/*']
 			},
 			options: {
 				configuration: grunt.file.readJSON("tslint.json")

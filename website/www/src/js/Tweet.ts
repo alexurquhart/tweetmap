@@ -16,7 +16,6 @@ interface TweetData {
 	pictures?: string[];
 }
 
-// 
 class Tweet {
 	private _marker: L.Marker;
 
@@ -38,7 +37,7 @@ class Tweet {
 
 	setupMarker(): void {
 
-		var settings: L.AwesomeMarker;
+		var settings: L.AwesomeMarker = {};
 		settings.prefix = 'fa';
 
 		// Setup marker based on type
@@ -48,8 +47,8 @@ class Tweet {
 					settings.markerColor = 'orange';
 				break;
 			default:
-				settings.icon = 'star';
-				settings.markerColor = 'orange';
+				settings.icon = 'twitter';
+				settings.markerColor = 'cadetblue';
 				break;
 		}
 
@@ -58,7 +57,7 @@ class Tweet {
 
 		// Create the marker
 		var icon: L.Icon = L.AwesomeMarkers.icon(settings);
-		var latLng: L.LatLng = new L.LatLng([this.data.latitude, this.data.longitude]);
+		var latLng: L.LatLng = new L.LatLng(this.data.latitude, this.data.longitude);
 		this._marker = L.marker(latLng, { icon: icon }).bindPopup(popup, { autopan: false });
 	}
 }

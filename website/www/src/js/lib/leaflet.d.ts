@@ -6,9 +6,9 @@
  declare module L {
 
  	export interface AwesomeMarker extends IconOptions {
- 		icon: string;
- 		prefix: string;
- 		markerColor: string;
+ 		icon?: string;
+ 		prefix?: string;
+ 		markerColor?: string;
  	}
 
  	module AwesomeMarkers {
