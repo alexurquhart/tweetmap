@@ -1,11 +1,12 @@
 language: go
 addons:
-	postgresql: "9.3"
+    - postgresql: "9.3"
 before_install:
     - wget https://protobuf.googlecode.com/svn/rc/protobuf-2.6.0.tar.gz
-    - tar -xzvf protobuf-2.6.0.tar.gz
     - wget http://download.zeromq.org/zeromq-4.0.5.tar.gz
+    - wget http://nodejs.org/dist/v0.12.0/node-v0.12.0-linux-x64.tar.gz
     - tar -xzvf zeromq-4.0.5.tar.gz
+    - tar -xzvf protobuf-2.6.0.tar.gz
 
     - go get github.com/tools/godep
     - go get golang.org/x/tools/cmd/cover
@@ -15,15 +16,23 @@ install:
     - sudo apt-get install -y uuid-dev
     - cd protobuf-2.6.0 && ./configure --prefix=/usr && make && sudo make install && cd ..
     - cd zeromq-4.0.5 && ./configure && make && sudo make install && sudo ldconfig && cd ..
+    
+    - mkdir node
+    - sudo tar -xzvf node-v0.12.0-linux-x64.tar.gz -C node/ --strip-components=1
+    - export PATH=$HOME/node/bin:$PATH
+    - export NODE_PATH=$HOME/node/lib/node_modules
+    
     - cd lib && godep restore && cd ..
+    - cd website/www && sudo npm install -g grunt-cli && npm install && cd ..
     - psql -U postgres < database/schema.sql
 script:
     - go test -v -covermode=count -coverprofile=c.out github.com/cdn-madness/tweetmap/lib
     - cd feed && go build -v && cd ..
-    - cd website && go build -v &&  cd ..
+    - cd website && go build -v
+    - cd www && grunt
 after_success:
     - goveralls -coverprofile=c.out -service=travis-ci -repotoken $COVERALLS_TOKEN
-    - mv feed/feed dist/ && mv website/website dist/ && mv website/www dist/ -r
+    - mv feed/feed dist/ && mv website/website dist/ && mv website/www/dist dist/ -r
     - tar czf tweetmap.tar.gz dist/*
 env:
   global:
