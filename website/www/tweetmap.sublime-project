@@ -1,17 +1,19 @@
 {
-	"folders":
-	[
-		{
-			"follow_symlinks": true,
-			"path": "."
-		}
-	],
-	"settings": {
-		"typescript":
-		{
-		    "roots":[
-		        "src/js/App.ts"
-		    ]
-		}
-	}
+    "folders": [
+        {
+            "path": "G:\\Dropbox\\Projects\\tweetmap\\website\\www", 
+            "follow_symlinks": true
+        }, 
+        {
+            "path": ".", 
+            "follow_symlinks": true
+        }
+    ], 
+    "settings": {
+        "typescript": {
+            "roots": [
+                "src/js/App.ts"
+            ]
+        }
+    }
 }

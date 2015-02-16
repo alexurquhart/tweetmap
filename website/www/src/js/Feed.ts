@@ -1,7 +1,6 @@
 /// <reference path="Tweet.ts"/>
 
 class Feed {
-
 	constructor(private _url: string, public callback: (data: Tweet) => void) {
 		this.listen();
 	}
@@ -33,7 +32,7 @@ class Feed {
 
 	makeTweet(tweet: TweetData): Tweet {
 		// Determine if they mentioned tweetmap
-		if (tweet.user === 'alexanderurq') {
+		if (tweet.author === 'alexanderurq') {
 			return new Tweet(tweet, MarkerType.King);
 		} else if (tweet.hashtags && tweet.hashtags.indexOf('tweetmap') !== -1) {
 			return new Tweet(tweet, MarkerType.Prince);

@@ -8,7 +8,7 @@ enum MarkerType {
 
 interface TweetData {
 	id: string;
-	user: string;
+	author: string;
 	text: string;
 	latitude: number;
 	longitude: number;
@@ -27,16 +27,31 @@ class Tweet {
 		return this._marker;
 	}
 
+	get hashtags(): string[] {
+		return this.data.hashtags;
+	}
+
+	get pictures(): string[] {
+		return this.data.pictures;
+	}
+
+	get author(): string {
+		return this.data.author;
+	}
+
+	get text(): string {
+		return this.data.text;
+	}
+
 	getPopupText(): string {
 		return '<a href="http://twitter.com/'
-			 + this.data.user
+			 + this.data.author
 			 + '" target="_blank">@'
-			 + this.data.user
+			 + this.data.author
 			 + ':</a> ' + this.data.text;
 	}
 
 	setupMarker(): void {
-
 		var settings: L.AwesomeMarker = {};
 		settings.prefix = 'fa';
 

@@ -3,13 +3,20 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
+		connect: {
+			serve: {
+				options: {
+					port: 8000,
+					base: 'dist',
+					keepalive: true,
+					hostname: '*'
+				}
+			}
+		},
+
 		less: {
 			files: {
-				expand: true,
-				cwd   : 'src/',
-				src   : ['css/**/*.less', '!bower_components/**/*'],
-				dest  : 'dist/',
-				ext   : '.css'
+				'dist/css/style.css': 'src/css/style.less'
 			}
 		},
 
@@ -124,6 +131,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
+	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-tslint');
 	grunt.loadNpmTasks('grunt-inject');
 
