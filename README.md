@@ -18,3 +18,4 @@ A tweet makes its way into the system through the watcher application. The watch
 + Drop dependency on protocol buffers
 + Fork the twitterstream repo and modify it to use channels/pipelining, and also save the extra step of serializing/deserializing to protocol buffers
 + Save URL's in the tweet database
++ Convert emoji's in the tweet text to images.
