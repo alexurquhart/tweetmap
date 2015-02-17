@@ -15,8 +15,18 @@ module.exports = function(grunt) {
 		},
 
 		less: {
-			files: {
-				'dist/css/style.css': 'src/css/style.less'
+			dev: {
+				files: {
+					'dist/css/style.css': 'src/css/style.less'
+				}	
+			},
+			prod: {
+				options: {
+					compress: true
+				},
+				files: {
+					'dist/css/style.css': 'src/css/style.less'
+				}	
 			}
 		},
 
@@ -99,7 +109,7 @@ module.exports = function(grunt) {
 		watch: {
 			less: {
 				files: ['src/**/*.less', '!bower_components/**/*'],
-				tasks: ['less'],
+				tasks: ['less:dev'],
 				options: {
 					livereload: true
 				}
@@ -135,5 +145,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-tslint');
 	grunt.loadNpmTasks('grunt-inject');
 
-	grunt.registerTask('default', ['clean', 'tslint', 'typescript', 'less', 'htmlmin', 'copy:prod']);
+	grunt.registerTask('default', ['clean', 'tslint', 'typescript', 'less:prod', 'htmlmin', 'copy:prod']);
 };

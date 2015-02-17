@@ -10,6 +10,10 @@ class ViewModel {
 	public latestPictures: KnockoutComputed<Tweet[]>;
 	public onlineCount: KnockoutObservable<number>;
 
+	public panToTweet: any = (tweet: Tweet) => {
+		this.map.panTo(tweet);
+	};
+
 	private map: TweetMap;
 	private feed: Feed;
 	private api: API;
@@ -23,14 +27,14 @@ class ViewModel {
 		// Start the map and the feed
 		this.map = new TweetMap;
 		this.feed = new Feed('ws://tweet.alexurquhart.com/ws/', (tweet: Tweet) => { this.addTweet(tweet); });
-
-		// Update the online count every 5 seconds
-		setInterval(() => { this.onlineCount(this.api.getOnlineCount()); }, 5000);
 	}
 
 	addTweet(tweet: Tweet): void {
 		this.map.addTweet(tweet);
 		this.latestTweets.unshift(tweet);
+
+		// Remove the tweet after 2 minutes
+		window.setTimeout(() => { this.map.removeTweet(this.latestTweets.pop()); }, 300000);
 	}
 
 	getLatestPictures(): Tweet[] {

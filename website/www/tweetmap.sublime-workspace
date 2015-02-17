@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"endp",
+				"endpoints"
+			],
+			[
+				"lates",
+				"[pub] ● latestTweets KnockoutObservableArray<Tweet>"
+			],
+			[
+				"Tweet",
+				"TweetMap"
+			],
+			[
+				"comp",
+				"[pub] ● computed KnockoutComputedStatic"
+			],
+			[
+				"KnockoutCo",
+				"[pub] ● components KnockoutComponents"
+			],
+			[
+				"compu",
+				"KnockoutComputedStatic"
+			],
+			[
 				"Twe",
 				"TweetMap"
 			],
@@ -31,50 +55,48 @@
 			"file": "Gruntfile.js",
 			"settings":
 			{
-				"buffer_size": 2615,
-				"line_ending": "Unix"
+				"buffer_size": 2862,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "src/js/App.ts",
+			"file": "src/js/API.ts",
 			"settings":
 			{
-				"buffer_size": 205,
-				"line_ending": "Unix",
-				"name": "/// <reference path=\"knockout-2.2.d.ts\" />"
-			}
-		},
-		{
-			"file": "src/js/App.js",
-			"settings":
-			{
-				"buffer_size": 9715,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/js/Feed.ts",
-			"settings":
-			{
-				"buffer_size": 980,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/js/Map.ts",
-			"settings":
-			{
-				"buffer_size": 646,
-				"line_ending": "Unix"
+				"buffer_size": 388,
+				"line_ending": "Windows"
 			}
 		},
 		{
 			"file": "src/js/ViewModel.ts",
 			"settings":
 			{
-				"buffer_size": 130,
-				"line_ending": "Unix",
-				"name": "class ViewModel {"
+				"buffer_size": 1487,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/css/bootstrap.less",
+			"settings":
+			{
+				"buffer_size": 422,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/index.html",
+			"settings":
+			{
+				"buffer_size": 7671,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Alex/Downloads/site/public/docs/clojure/clojure.core-api.html",
+			"settings":
+			{
+				"buffer_size": 338856,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -142,13 +164,27 @@
 	},
 	"expanded_folders":
 	[
-		"/home/alex/Desktop/tweetmap/website/www",
-		"/home/alex/Desktop/tweetmap/website/www/src",
-		"/home/alex/Desktop/tweetmap/website/www/src/js",
-		"/home/alex/Desktop/tweetmap/website/www/src/js/lib"
+		"/G/Dropbox/Projects/tweetmap/website/www",
+		"/G/Dropbox/Projects/tweetmap/website/www/dist",
+		"/G/Dropbox/Projects/tweetmap/website/www/dist/css",
+		"/G/Dropbox/Projects/tweetmap/website/www/src"
 	],
 	"file_history":
 	[
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/Map.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/css/tweetmap.less",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/index.html",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/css/style.less",
+		"/G/Dropbox/Projects/tweetmap/website/www/dist/css/style.css",
+		"/G/Dropbox/Projects/tweetmap/website/www/dist/css/bootstrap.css",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/css/bootstrap.less",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/ViewModel.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/Feed.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/App.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/lib/bootstrap.d.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/Tweet.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/API.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/lib/jquery.d.ts",
 		"/home/alex/Desktop/tweetmap/website/www/src/js/Tweet.ts",
 		"/home/alex/Desktop/tweetmap/website/www/src/js/App.js",
 		"/home/alex/Desktop/tweetmap/website/www/src/js/lib/leaflet.d.ts",
@@ -220,7 +256,7 @@
 	],
 	"find":
 	{
-		"height": 40.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -234,6 +270,36 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"57607A",
+			"B4B7BF",
+			"World_Light_Gray_Reference",
+			"FFCC00",
+			"F29F05",
+			"color",
+			"body {",
+			"^body {",
+			" body {",
+			"body {",
+			"background-color:",
+			"text",
+			"bootstrap",
+			"private",
+			"setOnlineCount",
+			"updateOnlineCount",
+			"number",
+			"e",
+			"getOnlineCount",
+			"count",
+			"private",
+			"showTweet",
+			"API",
+			"Feed",
+			"Map",
+			"Tweet",
+			"knockout",
+			"user",
+			"self",
+			"knockout",
 			"orange",
 			"star",
 			"data",
@@ -291,7 +357,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -300,15 +366,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2615,
+						"buffer_size": 2862,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								716,
-								716
+								2212,
+								2212
 							]
 						],
 						"settings":
@@ -318,37 +384,31 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1674.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "src/js/App.ts",
+					"file": "src/js/API.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 205,
+						"buffer_size": 388,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								205,
-								205
+								212,
+								212
 							]
 						],
 						"settings":
 						{
-							"auto_complete": true,
-							"auto_name": "/// <reference path=\"knockout-2.2.d.ts\" />",
-							"extensions":
-							[
-								"ts"
-							],
 							"syntax": "Packages/TypeScript/TypeScript.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -360,57 +420,23 @@
 				},
 				{
 					"buffer": 2,
-					"file": "src/js/App.js",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 9715,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3798,
-								3798
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2069.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/js/Feed.ts",
+					"file": "src/js/ViewModel.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 980,
+						"buffer_size": 1487,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								276,
-								276
+								902,
+								902
 							]
 						],
 						"settings":
 						{
-							"auto_complete": true,
-							"extensions":
-							[
-								"ts"
-							],
 							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
@@ -422,25 +448,25 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "src/js/Map.ts",
+					"buffer": 3,
+					"file": "src/css/bootstrap.less",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 646,
+						"buffer_size": 422,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								370,
-								370
+								395,
+								395
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/TypeScript/TypeScript.tmLanguage"
+							"syntax": "Packages/LESS/LESS.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -450,32 +476,62 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "src/js/ViewModel.ts",
+					"buffer": 4,
+					"file": "src/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 130,
+						"buffer_size": 7671,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								127,
-								94
+								6887,
+								6887
 							]
 						],
 						"settings":
 						{
-							"auto_name": "class ViewModel {",
-							"syntax": "Packages/TypeScript/TypeScript.tmLanguage"
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1692.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/Alex/Downloads/site/public/docs/clojure/clojure.core-api.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 338856,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1267,
+								1267
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1350.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -566,7 +622,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 225.0,
+	"side_bar_width": 233.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

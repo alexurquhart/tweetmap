@@ -6,7 +6,7 @@ enum MarkerType {
 	Plebian
 };
 
-interface TweetData {
+interface ITweetData {
 	id: string;
 	author: string;
 	text: string;
@@ -19,7 +19,7 @@ interface TweetData {
 class Tweet {
 	private _marker: L.Marker;
 
-	constructor(private data: TweetData, private type: MarkerType = MarkerType.Plebian) {
+	constructor(private data: ITweetData, private type: MarkerType = MarkerType.Plebian) {
 		this.setupMarker();
 	}
 
