@@ -18,7 +18,7 @@ class Feed {
 	}
 
 	onClose(): void  {
-		this.listen();
+        setTimeout(() => { this.listen(); }, 2500);
 		console.log('Socket Closed');
 	}
 
