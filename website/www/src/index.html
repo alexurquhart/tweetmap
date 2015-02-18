@@ -12,7 +12,7 @@
     </head>
     <body>
         <div id="tooltip"></div>
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -24,9 +24,26 @@
                     <a class="navbar-brand" href="#">Ottawa Tweet Mapper</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Overlays <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="active"><a href="#">Live Feed</a></li>
+                                <li><a href="#">Heat Map</a></li>
+                                <li><a href="#">Hashtags</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Statistics <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">By Ward</a></li>
+                                <li><a href="#">500 Metre Grid</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li data-toggle="tooltip" data-placement="bottom" title="# Users Online">
-                            <a href="#">
+                            <a href="#" class="text-danger">
                                 <i class="fa fa-eye"></i> <span data-bind="text: onlineCount"></span>
                             </a>
                         </li>
@@ -118,7 +135,6 @@
             ga('send', 'pageview');
         </script>
 
-        <!-- inject --> 
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
         <script src="bower_components/flot/jquery.flot.time.js"></script>
@@ -129,5 +145,6 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
         <script src="js/App.js"></script>
+        <!-- inject --> 
     </body>
 </html>
