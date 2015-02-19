@@ -1,4 +1,5 @@
 website/website
+*.sublime-workspace
 */loaderio*
 *.out
 node_modules

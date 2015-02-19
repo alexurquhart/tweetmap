@@ -5,8 +5,12 @@
 /// <reference path="Map.ts"/>
 /// <reference path="ViewModel.ts"/>
 
+
+
 $(function(): void {
 	$('[data-toggle="tooltip"]').tooltip();
+
+    $('#feed').mCustomScrollbar();
 
 	var vm: ViewModel = new ViewModel();
 
