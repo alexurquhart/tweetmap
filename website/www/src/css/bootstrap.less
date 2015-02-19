@@ -1,4 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
 @import "../bower_components/bootstrap/less/bootstrap.less";
 
 @brand-primary: #4970BF;
@@ -12,7 +11,10 @@
 @navbar-inverse-bg: #343D59;
 @navbar-inverse-link-color: @text-muted;
 @navbar-inverse-link-hover-color: lighten(@text-muted, 10%);
-@navbar-inverse-link-active-bg: lighten(@navbar-default-bg, 6.5%);
+@navbar-inverse-link-active-bg: lighten(@navbar-inverse-bg, 6.5%);
 @navbar-inverse-link-active-color: @navbar-inverse-link-color;
+
+@dropdown-bg: @navbar-inverse-link-active-bg;
+@dropdown-link-color: @navbar-inverse-link-color;
 
 @list-group-bg: #E8EEFF;

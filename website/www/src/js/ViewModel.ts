@@ -19,14 +19,15 @@ class ViewModel {
 	private api: API;
 
 	constructor() {
-		this.onlineCount = ko.observable(1);
+		this.api = new API('http://tweet.alexurquhart.com/');
 		this.latestTweets = ko.observableArray([]);
 		this.latestPictures = ko.computed(() => { return this.getLatestPictures(); });
-		this.api = new API('http://tweet.alexurquhart.com/');
 
 		// Start the map and the feed
 		this.map = new TweetMap;
 		this.feed = new Feed('ws://tweet.alexurquhart.com/ws/', (tweet: Tweet) => { this.addTweet(tweet); });
+
+		this.onlineCount = this.api.onlineCount;
 	}
 
 	addTweet(tweet: Tweet): void {

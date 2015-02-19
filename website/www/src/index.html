@@ -7,8 +7,8 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css" media="all" />
         <link rel="stylesheet" type="text/css" href="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css">
         <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.0.7/jquery.mCustomScrollbar.min.css">
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" /> 
-
     </head>
     <body>
         <div id="tooltip"></div>
@@ -21,7 +21,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Ottawa Tweet Mapper</a>
+                    <a class="navbar-brand" href="#"><i class="fa fa-twitter"></i> Ottawa Tweet Mapper</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -59,54 +59,69 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div id="left-sidebar" class="col-xs-6 col-sm-3 col-md-2">
-                    <h4 class="text-muted"># Tweets / Hour</h4>
-                    <div id="tweetsLast24Hours"></div>
-
-                    <h4 class="text-muted">Tweets By Ward</h4>
-                    <div class="btn-group" role="group" data-toggle="buttons">
-                        <label class="btn btn-default btn-sm active">
-                            <input type="radio" name="chloropleths" id="noChloro" autocomplete="off" checked> None
-                        </label>
-                        <label class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="Wards are color coded by the total # of tweets observed over the past 24 hours.">
-                            <input type="radio" name="chloropleths" id="tweetsToday" autocomplete="off"> 24h Total
-                        </label>
-                        <label class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="Wards are color coded by the change between the number of tweets today, and the previous day.">
-                            <input type="radio" name="chloropleths" id="dayChange" autocomplete="off"> 24h Change
-                        </label>
-                        </div>
-                    <h5 class="text-muted">Legend</h5>
-                    <div id="legend">
-                    </div>
-
-                </div>
-                <div id="right-sidebar" class="col-xs-6 col-sm-3 col-md-2 col-md-push-8 col-sm-push-6">
-                    <div id="tweet-feed-container" class="row">
-                        <div id="tweet-feed" class="col-md-12">
-                            <h4 class="text-muted">Latest Tweets</h4>
-                            <div class="list-group" data-bind="template: { foreach: latestTweets, afterAdd: showTweet, beforeRemove: hideTweet }">
-                                <span class="list-group-item">
-                                    <a data-bind="attr: {href: 'https://twitter.com/' + author }" target="_blank">
-                                        <h5 class="list-group-item-heading" data-bind="text: '@' + author"></h5>
-                                    </a>
-                                    <p class="list-group-item-text" data-bind="html: text, click: $parent.panToTweet"></p>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="picture-feed-container" class="row">
-                        <div id="picture-feed" class="col-md-12">
-                            <h4 class="text-muted">Latest Pictures</h4>
-                            <div data-bind="foreach: latestPictures()">
-                                <div data-bind="foreach: pictures, click: $parent.panToTweet">
-                                    <img data-bind="attr: { src: $data, title: '@' + $parent.author + ': ' + $parent.text }" class="img-responsive img-thumbnail pic center-block" data-toggle="tooltip" data-placement="left">
-                                </div>
-                            </div>
-                        </div>
+                <div id="left-sidebar" class="hidden-xs hidden-sm col-md-4 col-lg-3">
+                    <h3 class="text-muted">Live Feed</h3>
+                    <div class="list-group" data-bind="template: { foreach: latestTweets, afterAdd: showTweet, beforeRemove: hideTweet }">
+                        <span class="list-group-item">
+                            <a data-bind="attr: {href: 'https://twitter.com/' + author }" target="_blank">
+                                <h5 class="list-group-item-heading" data-bind="text: '@' + author"></h5>
+                            </a>
+                            <p class="list-group-item-text" data-bind="html: text, click: $parent.panToTweet"></p>
+                            <div data-bind="if: pictures">Pictures!!!!</div>
+                        </span>
                     </div>
                 </div>
-                <div id="map" class="col-xs-12 col-sm-6 col-md-8 col-sm-pull-3 col-md-pull-2"></div>
+                <div id="map" class="col-sm-12 col-md-8 col-lg-9"></div>
             </div>
+        
+<!--             <div class="row">
+    <div id="left-sidebar" class="col-xs-6 col-sm-3 col-md-2">
+        <h4 class="text-muted"># Tweets / Hour</h4>
+        <div id="tweetsLast24Hours"></div>
+
+        <h4 class="text-muted">Tweets By Ward</h4>
+        <div class="btn-group" role="group" data-toggle="buttons">
+            <label class="btn btn-default btn-sm active">
+                <input type="radio" name="chloropleths" id="noChloro" autocomplete="off" checked> None
+            </label>
+            <label class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="Wards are color coded by the total # of tweets observed over the past 24 hours.">
+                <input type="radio" name="chloropleths" id="tweetsToday" autocomplete="off"> 24h Total
+            </label>
+            <label class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="Wards are color coded by the change between the number of tweets today, and the previous day.">
+                <input type="radio" name="chloropleths" id="dayChange" autocomplete="off"> 24h Change
+            </label>
+            </div>
+        <h5 class="text-muted">Legend</h5>
+        <div id="legend">
+        </div>
+    </div>
+    <div id="right-sidebar" class="col-xs-6 col-sm-3 col-md-2 col-md-push-8 col-sm-push-6">
+        <div id="tweet-feed-container" class="row">
+            <div id="tweet-feed" class="col-md-12">
+                <h4 class="text-muted">Latest Tweets</h4>
+                <div class="list-group" data-bind="template: { foreach: latestTweets, afterAdd: showTweet, beforeRemove: hideTweet }">
+                    <span class="list-group-item">
+                        <a data-bind="attr: {href: 'https://twitter.com/' + author }" target="_blank">
+                            <h5 class="list-group-item-heading" data-bind="text: '@' + author"></h5>
+                        </a>
+                        <p class="list-group-item-text" data-bind="html: text, click: $parent.panToTweet"></p>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="picture-feed-container" class="row">
+            <div id="picture-feed" class="col-md-12">
+                <h4 class="text-muted">Latest Pictures</h4>
+                <div data-bind="foreach: latestPictures()">
+                    <div data-bind="foreach: pictures, click: $parent.panToTweet">
+                        <img data-bind="attr: { src: $data, title: '@' + $parent.author + ': ' + $parent.text }" class="img-responsive img-thumbnail pic center-block" data-toggle="tooltip" data-placement="left">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="map" class="col-xs-12 col-sm-6 col-md-8 col-sm-pull-3 col-md-pull-2"></div>
+</div> -->
         </div>
 
         <div class="modal fade" id="modal-id">
@@ -135,7 +150,9 @@
             ga('send', 'pageview');
         </script>
 
+
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.0.7/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
         <script src="bower_components/flot/jquery.flot.time.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/js/bootstrap.min.js"></script>

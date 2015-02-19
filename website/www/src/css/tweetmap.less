@@ -3,7 +3,6 @@ html, body {
     height: 100%;
     margin: 0px;
     padding: 25px 0px 0px 0px;
-    background-color: #FFCC00;
 }
 
 .emoji {
@@ -12,12 +11,15 @@ html, body {
 
 .container-fluid, .row {
 	height: 100%;
-
 }
 
 .pic {
 	margin-bottom: 15px;
 	cursor: pointer;
+}
+
+.navbar-brand {
+	font-family: 'Nova Square', cursive;
 }
 
 .list-group-item {
@@ -36,14 +38,10 @@ html, body {
 	border-radius: 4px;
 }
 
-#right-sidebar {
-	height: 100%;
-	border-left: 2px solid darken(@body-bg, 10%);
-}
-
 #left-sidebar {
 	height: 100%;
-	border-right: 2px solid darken(@body-bg, 10%);
+	border-right: 10px solid darken(@body-bg, 10%);
+	overflow-y: scroll;
 }
 
 #tweet-feed {
@@ -63,7 +61,7 @@ html, body {
 
 #map {
     height: 100%;
-    color: #000000;
+    background-color: #555555;
     z-index: 1;
 }
 

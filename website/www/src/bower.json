@@ -22,6 +22,7 @@
     "Leaflet.awesome-markers": "~2.0.2",
     "flot": "~0.8.3",
     "d3-cloud": "~1.0.5",
-    "bootstrap": "~3.3.2"
+    "bootstrap": "~3.3.2",
+    "malihu-custom-scrollbar-plugin": "~3.0.7"
   }
 }
