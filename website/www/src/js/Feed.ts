@@ -33,7 +33,7 @@ class Feed {
 
 	makeTweet(tweet: ITweetData): Tweet {
 		// Format emojis - kinda hacky but it works.
-		tweet.text = twemoji.parse(tweet.text).replace(/36x36/g,'16x16');
+		tweet.text = twemoji.parse(tweet.text).replace(/36x36/g, '16x16');
 
 		// Determine if they mentioned tweetmap
 		if (tweet.author === 'alexanderurq') {

@@ -61,16 +61,19 @@
             <div class="row">
                 <div id="left-sidebar" class="hidden-xs hidden-sm col-md-4 col-lg-3 mCustomScrollbar">
                     <h3 class="text-muted">Live Tweets</h3>
-                    <div id="feed">
-                        <div class="list-group" data-bind="template: { foreach: latestTweets, afterAdd: showTweet, beforeRemove: hideTweet }">
-                            <span class="list-group-item">
-                                <a data-bind="attr: {href: 'https://twitter.com/' + author }" target="_blank">
-                                    <h5 class="list-group-item-heading" data-bind="text: '@' + author"></h5>
-                                </a>
-                                <p class="list-group-item-text" data-bind="html: text, click: $parent.panToTweet"></p>
-                                <div data-bind="if: pictures">Pictures!!!!</div>
-                            </span>
-                        </div>
+                    <div class="list-group" data-bind="template: { foreach: latestTweets, afterAdd: showTweet, beforeRemove: hideTweet }">
+                        <span data-bind="click: $parent.panToTweet" class="list-group-item">
+                            <a data-bind="attr: {href: 'https://twitter.com/' + author }" target="_blank">
+                                <h5 class="list-group-item-heading" data-bind="text: '@' + author"></h5>
+                            </a>
+                            <p class="list-group-item-text" data-bind="html: text"></p>
+                            <div data-bind="foreach: pictures">
+                                <img data-bind="attr: { src: $data, title: '@' + $parent.author + ': ' + $parent.text }" class="img-responsive img-thumbnail pic center-block" data-toggle="tooltip" data-placement="left">
+                            </div>
+                            <!-- 
+                            <img data-bind="attr: { src: $pictures[0].url, title: '@' + $parent.author + ': ' + $parent.text }" class="img-responsive img-thumbnail pic center-block" data-toggle="tooltip" data-placement="left">
+                            ko -->
+                        </span>
                     </div>
                 </div>
                 <div id="map" class="col-sm-12 col-md-8 col-lg-9"></div>

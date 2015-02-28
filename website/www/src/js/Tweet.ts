@@ -32,7 +32,11 @@ class Tweet {
 	}
 
 	get pictures(): string[] {
-		return this.data.pictures;
+		if (this.data.pictures) {
+			return this.data.pictures;
+		} else {
+			return [];
+		}
 	}
 
 	get author(): string {
