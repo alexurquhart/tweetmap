@@ -48,11 +48,34 @@ html, body {
 	overflow: hidden;
 }
 
+#map-container {
+	height: 100%;
+	background-color: #555555;
+    z-index: 1;
+    padding: 0px;
+}
+
 #map {
     height: 100%;
-    background-color: #555555;
-    z-index: 1;
 }
+
+#alerts {
+	position: absolute;
+	z-index: 1;
+	bottom: 0px;
+	width: 50%;
+	left: 25%;
+}
+
+@media (max-width: @screen-xs-max) {
+	#alerts {
+		width: 80%;
+		left: 10%;
+	}
+}
+
+// Glowing alert box
+
 
 #tweetsLast24Hours {
 	width: 100%;

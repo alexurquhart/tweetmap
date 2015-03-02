@@ -2,20 +2,19 @@
 /// <reference path="lib/knockout.d.ts"/>
 
 class API {
-	private _onlineCount: KnockoutObservable<number>;
+	constructor(private baseURL: string) {}
 
-	constructor(private baseURL: string) {
-		this._onlineCount = ko.observable(1);
-
-		this.updateOnlineCount();
-		setInterval(() => { this.updateOnlineCount(); }, 5000);
+	getOnlineCount(callback: (count: number) => void): void {
+		$.getJSON(this.baseURL + 'ws/info', (data: any) => { callback(data.clients); });
 	}
 
-	get onlineCount(): KnockoutObservable<number> {
-		return this._onlineCount;
-	}
-
-	updateOnlineCount(): void {
-		$.getJSON(this.baseURL + 'ws/info', (data: any) => { this._onlineCount(data.clients); });
+	getJSON(name: string, callback: (json: any) => void): void {
+		$.getJSON('assets/' + name + '.json', function(data: any, status: any): void {
+			if (status !== 'success') {
+				console.log('Could not load ' + name + '.json');
+			} else {
+				callback(data);
+			}
+		});
 	}
 }

@@ -4,38 +4,54 @@
 /// <reference path="Map.ts"/>
 /// <reference path="Feed.ts"/>
 /// <reference path="API.ts"/>
+/// <reference path="Overlay.ts"/>
 
 class ViewModel {
-	public latestTweets: KnockoutObservableArray<Tweet>;
-	public latestPictures: KnockoutComputed<Tweet[]>;
 	public onlineCount: KnockoutObservable<number>;
+	public latestTweets: KnockoutObservableArray<Tweet>;
+	public lastTweet: KnockoutComputed<Tweet>;
+	public latestPictures: KnockoutComputed<Tweet[]>;
+	public activeOverlay: KnockoutObservable<string>;
 
 	public panToTweet: any = (tweet: Tweet) => {
-		this.map.panTo(tweet);
+		this._map.panTo(tweet);
+		return true;
 	};
 
-	private map: TweetMap;
-	private feed: Feed;
-	private api: API;
+	private _map: TweetMap;
+	private _feed: Feed;
+	private _api: API;
 
 	constructor() {
-		this.api = new API('http://tweet.alexurquhart.com/');
+		this._api = new API('http://tweet.alexurquhart.com/');
 		this.latestTweets = ko.observableArray([]);
 		this.latestPictures = ko.computed(() => { return this.getLatestPictures(); });
+		this.lastTweet = ko.computed(() => { return this.latestTweets()[0]; });
+
+		// Set the online count and update every 5 seconds or so
+		this.updateOnlineCount();
+
+		this.activeOverlay = ko.observable('liveFeed');
+
+		// Only update the last tweet once every 1500ms (for mobile)
+		this.lastTweet.extend({ rateLimit: { timeout: 1500, method: 'notifyAtFixedRate' }});
+
+		// Subscribe to changes to the last tweet
+		// TODO - add glow effect to alert box when new
+		// tweet appears
+		// this.lastTweet.subscribe(function(newTweet: Tweet): void {
+		// 	console.log('New tweet');
+		// });
 
 		// Start the map and the feed
-		this.map = new TweetMap;
-		this.feed = new Feed('ws://tweet.alexurquhart.com/ws/', (tweet: Tweet) => { this.addTweet(tweet); });
-
-		this.onlineCount = this.api.onlineCount;
+		this._map = new TweetMap;
+		this._feed = new Feed('ws://tweet.alexurquhart.com/ws/', (tweet: Tweet) => { this.addTweet(tweet); });
 	}
 
 	addTweet(tweet: Tweet): void {
-		this.map.addTweet(tweet);
+		this._map.addTweet(tweet);
 		this.latestTweets.unshift(tweet);
-
-		// Remove the tweet after 2 minutes
-		window.setTimeout(() => { this.map.removeTweet(this.latestTweets.pop()); }, 300000);
+		window.setTimeout(() => { this._map.removeTweet(this.latestTweets.pop()); }, 300000);
 	}
 
 	getLatestPictures(): Tweet[] {
@@ -58,5 +74,16 @@ class ViewModel {
 		if (tweet.nodeType === 1) {
 			$(tweet).slideUp(500);
 		}
+	}
+
+	changeOverlay(newOverlay: string): void {
+		this.activeOverlay(newOverlay);
+	}
+
+	updateOnlineCount(): void {
+		this.onlineCount = ko.observable(1);
+		setInterval(() => {
+			this._api.getOnlineCount((count: number) => { this.onlineCount(count); });
+		}, 5000);
 	}
 }

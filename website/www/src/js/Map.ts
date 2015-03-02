@@ -1,4 +1,5 @@
 /// <reference path="lib/leaflet.d.ts"/>
+/// <reference path="lib/jquery.d.ts"/>
 /// <reference path="Tweet.ts"/>
 
 class TweetMap {
@@ -26,5 +27,15 @@ class TweetMap {
 	panTo(tweet: Tweet): void {
 		this._map.panTo(tweet.marker.getLatLng());
 		tweet.marker.openPopup();
+	}
+
+	// Toggles the marker and shadow panes off -also closes any popup windows
+	toggleMarkers(tweets: Tweet[]): void {
+
+		$.each(tweets, function(index: number, tweet: Tweet): void {
+			tweet.marker.closePopup();
+		});
+
+		$('.leaflet-marker-pane, .leaflet-shadow-pane').fadeToggle();
 	}
 }
