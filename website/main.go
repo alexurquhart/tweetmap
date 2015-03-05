@@ -23,6 +23,7 @@ func main() {
 		initLogger(ioutil.Discard, ioutil.Discard, os.Stderr)
 	} else {
 		initLogger(os.Stdout, os.Stdout, os.Stderr)
+		Info.Println("Debug Mode")
 	}
 
 	var err error
