@@ -5,6 +5,7 @@
 /// <reference path="Feed.ts"/>
 /// <reference path="API.ts"/>
 /// <reference path="Overlay.ts"/>
+/// <reference path="Chart.ts"/>
 
 class ViewModel {
 	public onlineCount: KnockoutObservable<number>;
@@ -46,6 +47,8 @@ class ViewModel {
 		// Start the map and the feed
 		this._map = new TweetMap;
 		this._feed = new Feed('ws://tweet.alexurquhart.com/ws/', (tweet: Tweet) => { this.addTweet(tweet); });
+
+		var chart: Chart = new TweetsPerHourChart('#tab2', 'tweets-per-hour', this._api);
 	}
 
 	addTweet(tweet: Tweet): void {

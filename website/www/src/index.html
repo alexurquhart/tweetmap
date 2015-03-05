@@ -7,8 +7,7 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css" media="all" />
         <link rel="stylesheet" type="text/css" href="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css">
         <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.0.7/jquery.mCustomScrollbar.min.css">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.7.0/nv.d3.min.css">
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.7.0/nv.d3.min.css">
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" /> 
     </head>
     <body>
@@ -66,20 +65,41 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div id="left-sidebar" class="hidden-xs hidden-sm col-md-4 col-lg-3 mCustomScrollbar">
-                    <h3 class="text-muted">Live Tweets</h3>
-                    <div class="list-group" data-bind="template: { foreach: latestTweets, afterAdd: showTweet, beforeRemove: hideTweet }">
-                        <span class="list-group-item">
-                            <a data-bind="attr: {href: 'https://twitter.com/' + author }" target="_blank">
-                                <h5 class="list-group-item-heading" data-bind="text: '@' + author"></h5>
-                            </a>
-                            <div data-bind="click: $parent.panToTweet">
-                                <p class="list-group-item-text" data-bind="html: text"></p>
-                                <div data-bind="foreach: pictures">
-                                    <img data-bind="attr: { src: $data, title: '@' + $parent.author + ': ' + $parent.text }" class="img-responsive img-thumbnail pic center-block" data-toggle="tooltip" data-placement="left">
+                <div id="left-sidebar" class="hidden-xs hidden-sm col-md-4 col-lg-3">
+                    <div id="tabs" role="tabpanel">
+                        <!-- Tab Header -->
+                        <ul id="tab-header" class="nav nav-tabs" role="navlist">
+                            <li class="active" role="presentation"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Live Feed</a></li>
+                            <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Charts</a></li>
+                            <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Stats</a></li>
+                        </ul>
+                        
+                        <div id="tab-content" class="tab-content">
+                            <!-- Live Feed -->
+                            <div class="tab-pane active" id="tab1" role="tabpanel">
+                                <div class="list-group" data-bind="template: { foreach: latestTweets, afterAdd: showTweet, beforeRemove: hideTweet }">
+                                    <span class="list-group-item">
+                                        <a data-bind="attr: {href: 'https://twitter.com/' + author }" target="_blank">
+                                            <h5 class="list-group-item-heading" data-bind="text: '@' + author"></h5>
+                                        </a>
+                                        <div data-bind="click: $parent.panToTweet">
+                                            <p class="list-group-item-text" data-bind="html: text"></p>
+                                            <div data-bind="foreach: pictures">
+                                                <img data-bind="attr: { src: $data, title: '@' + $parent.author + ': ' + $parent.text }" class="img-responsive img-thumbnail pic center-block" data-toggle="tooltip" data-placement="left">
+                                            </div>
+                                        </div>
+                                    </span>
                                 </div>
                             </div>
-                        </span>
+
+                            <!-- Charts -->
+                            <div class="tab-pane" id="tab2" role="tabpanel">
+
+                            </div>
+
+                            <!-- Stats -->
+                            <div class="tab-pane" id="tab3" role="tabpanel">Statistics</div>
+                        </div>
                     </div>
                 </div>
                 <div id="map-container" class="col-sm-12 col-md-8 col-lg-9">
@@ -124,15 +144,14 @@
 
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.0.7/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>
         <script src="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
         <script src="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.7.0/nv.d3.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.7.0/nv.d3.min.js"></script>
         <script src="js/App.js"></script>
         <!-- inject --> 
     </body>

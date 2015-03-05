@@ -41,11 +41,7 @@ html, body {
 #left-sidebar {
 	height: 100%;
 	border-right: 10px solid darken(@body-bg, 10%);
-}
-
-#feed {
-	height: 100%;
-	overflow: hidden;
+	padding: 5px;
 }
 
 #map-container {
@@ -57,6 +53,37 @@ html, body {
 
 #map {
     height: 100%;
+}
+
+#tabs {
+	height: 100%;
+}
+
+.nav-tabs > li > a {
+	color: @text-muted;
+	font-family: 'Nova Square', cursive;
+}
+
+.nav-tabs > li > a:hover {
+	color: lighten(@body-bg, 10%);
+	font-family: 'Nova Square', cursive;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+	color: #FFF;
+}
+
+.tab-pane {
+	margin-top: 5px;
+}
+
+#tab-content {
+	overflow-y: auto;
+}
+
+.list-group-item {
+	margin-top: 10px;
+	border-radius: 0px;
 }
 
 #alerts {
@@ -72,35 +99,4 @@ html, body {
 		width: 80%;
 		left: 10%;
 	}
-}
-
-// Glowing alert box
-
-
-#tweetsLast24Hours {
-	width: 100%;
-	height: 150px;
-}
-
-.legend-cell {
-	float: left;
-	width: 30px;
-	min-width: 25%;
-	height: 25px;
-	border-top: 1px solid #000;
-	border-left: 1px solid #000;
-	border-right: 1px solid #000;
-	margin: 0;
-}
-
-.legend-cell:last-child {
-	border-bottom: 1px solid #000;
-}
-
-.legend-label {
-	text-align: left;
-	padding-left: 10px;
-	width: 50%;
-	mid-width: 90px;
-	float: left
 }
