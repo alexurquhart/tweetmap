@@ -48,7 +48,7 @@ class ViewModel {
 		this._map = new TweetMap;
 		this._feed = new Feed('ws://tweet.alexurquhart.com/ws/', (tweet: Tweet) => { this.addTweet(tweet); });
 
-		var chart: Chart = new TweetsPerHourChart('#tab2', 'tweets-per-hour', this._api);
+		var chart: Chart = new Last24HoursChart('#chart', this._api);
 	}
 
 	addTweet(tweet: Tweet): void {

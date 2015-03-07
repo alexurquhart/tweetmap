@@ -4,6 +4,62 @@
 		"selected_items":
 		[
 			[
+				"parent",
+				"parentWidth"
+			],
+			[
+				"sele",
+				" ● select (property) D3.Selectors.select: {\n    (): D3.Selection;\n    (selector: string): D3.Selection;\n    (element: EventTarget): D3.Selection;\n}"
+			],
+			[
+				"curre",
+				"currentLine"
+			],
+			[
+				"Li",
+				" ◊ LinearScale interface D3.Scale.LinearScale"
+			],
+			[
+				"get",
+				" ○ getTweetData (method) API.getTweetData(endpoint: string, callback: (json: any) => void): void"
+			],
+			[
+				"RESI",
+				"resizeSidebar"
+			],
+			[
+				"resize",
+				"resizeSidebar"
+			],
+			[
+				"resi",
+				"Resize"
+			],
+			[
+				"active",
+				"activeOverlay"
+			],
+			[
+				"for",
+				"fori	for (…) {…}"
+			],
+			[
+				"togg",
+				"[pub] ○ toggleClass (className: string, swtch?: boolean): JQuery (+ 2 overload(s))"
+			],
+			[
+				"script",
+				"script"
+			],
+			[
+				"s",
+				"[pub] ○ subscribe (callback: (newValue: T) => void, target?: any, event?: string): KnockoutSubscription (+ 1 overload(s))"
+			],
+			[
+				"late",
+				"[pub] ● latestTweets KnockoutObservableArray<Tweet>"
+			],
+			[
 				"sty",
 				"stylesheet"
 			],
@@ -68,43 +124,50 @@
 	"buffers":
 	[
 		{
-			"file": "src/index.html",
+			"file": "/C/Users/Alex/AppData/Roaming/Sublime Text 3/Packages/ArcticTypescript/README.md",
 			"settings":
 			{
-				"buffer_size": 9807,
+				"buffer_size": 15375,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/Chart.ts",
+			"settings":
+			{
+				"buffer_size": 1309,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "<nav class=\"navbar navbar-default navbar-fixed-top visible-xs\">\n  <div class=\"container-fluid\">\n    <!-- Brand and toggle get grouped for better mobile display -->\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n      <span class=\"sr-only\">Toggle navigation</span>\n      <span class=\"icon-bar\"></span>\n      <span class=\"icon-bar\"></span>\n      <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">Brand</a>\n    </div>\n    <!-- Collect the nav links, forms, and other content for toggling -->\n    <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\"><a href=\"#\">Link <span class=\"sr-only\">(current)</span></a></li>\n        <li><a href=\"#\">Link</a></li>\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\n          <ul class=\"dropdown-menu\" role=\"menu\">\n            <li><a href=\"#\">Action</a></li>\n            <li><a href=\"#\">Another action</a></li>\n            <li><a href=\"#\">Something else here</a></li>\n            <li class=\"divider\"></li>\n            <li><a href=\"#\">Separated link</a></li>\n            <li class=\"divider\"></li>\n            <li><a href=\"#\">One more separated link</a></li>\n          </ul>\n        </li>\n      </ul>\n      <form class=\"navbar-form navbar-left\" role=\"search\">\n        <div class=\"form-group\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n        </div>\n        <button type=\"submit\" class=\"btn btn-default\">Submit</button>\n      </form>\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li><a href=\"#\">Link</a></li>\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\n          <ul class=\"dropdown-menu\" role=\"menu\">\n            <li><a href=\"#\">Action</a></li>\n            <li><a href=\"#\">Another action</a></li>\n            <li><a href=\"#\">Something else here</a></li>\n            <li class=\"divider\"></li>\n            <li><a href=\"#\">Separated link</a></li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>",
+			"file": "/G/Dropbox/Projects/tweetmap/website/handlers.go",
 			"settings":
 			{
-				"buffer_size": 2372,
-				"line_ending": "Windows",
-				"name": "<nav class=\"navbar navbar-default navbar-fixed-top"
-			}
-		},
-		{
-			"file": "src/js/Tweet.ts",
-			"settings":
-			{
-				"buffer_size": 1542,
+				"buffer_size": 1301,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "src/css/leaflet.less",
+			"file": "/G/Dropbox/Projects/tweetmap/website/main.go",
 			"settings":
 			{
-				"buffer_size": 233,
+				"buffer_size": 1195,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "src/css/tweetmap.less",
+			"file": "src/css/bootstrap.less",
 			"settings":
 			{
-				"buffer_size": 1103,
+				"buffer_size": 814,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/js/ViewModel.ts",
+			"settings":
+			{
+				"buffer_size": 2585,
 				"line_ending": "Windows"
 			}
 		}
@@ -175,23 +238,41 @@
 	[
 		"/G/Dropbox/Projects/tweetmap/website/www",
 		"/G/Dropbox/Projects/tweetmap/website/www/src",
-		"/G/Dropbox/Projects/tweetmap/website/www/src/css",
-		"/G/Dropbox/Projects/tweetmap/website/www/src/js"
+		"/G/Dropbox/Projects/tweetmap/website/www/src/css"
 	],
 	"file_history":
 	[
-		"/G/Dropbox/Projects/tweetmap/website/www/src/js/ViewModel.ts",
-		"/G/Dropbox/Projects/tweetmap/website/www/src/css/style.less",
-		"/G/Dropbox/Projects/tweetmap/website/www/src/js/API.ts",
-		"/G/Dropbox/Projects/tweetmap/website/www/src/js/App.js",
-		"/G/Dropbox/Projects/tweetmap/website/www/src/css/bootstrap.less",
-		"/G/Dropbox/Projects/tweetmap/website/www/src/css/tweetmap.less",
-		"/G/Dropbox/Projects/tweetmap/website/www/src/js/Map.ts",
-		"/G/Dropbox/Projects/tweetmap/website/www/Gruntfile.js",
-		"/G/Dropbox/Projects/tweetmap/website/www/src/js/Feed.ts",
-		"/G/Dropbox/Projects/tweetmap/website/www/src/js/lib/twemoji.d.ts",
-		"/G/Dropbox/Projects/tweetmap/website/www/src/js/Tweet.ts",
 		"/G/Dropbox/Projects/tweetmap/website/www/src/index.html",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/css/tweetmap.less",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/css/chart.less",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/css/style.less",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/Chart.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/lib/c3.d.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/lib/flot.d.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/App.js",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/lib/nvd3.d.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/ViewModel.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/tsconfig.json",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/bower_components/bootstrap/less/bootstrap.less",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/API.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/Overlay.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/App.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/css/bootstrap.less",
+		"/G/Dropbox/Projects/tweetmap/website/www/dist/bower_components/jquery/src/attributes/classes.js",
+		"/G/Dropbox/Projects/tweetmap/website/www/node_modules/tslint/.tscache/compiler/hashes/commandLineParser.ts-a8d45fbc658efde2413be2a37dd9597c",
+		"/G/Dropbox/Projects/tweetmap/website/www/dist/bower_components/jquery-mousewheel/ChangeLog.md",
+		"/G/Dropbox/Projects/tweetmap/website/www/node_modules/bower/CHANGELOG.md",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/Map.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/dist/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css",
+		"/G/Dropbox/Projects/tweetmap/website/www/dist/js/App.js",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/Feed.ts",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/assets/wards.json",
+		"/C/Users/Alex/Downloads/wards.json",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/Tweet.ts",
+		"/C/Users/Alex/AppData/Roaming/Sublime Text 3/Packages/ArcticTypescript/README.md",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/css/leaflet.less",
+		"/G/Dropbox/Projects/tweetmap/website/www/Gruntfile.js",
+		"/G/Dropbox/Projects/tweetmap/website/www/src/js/lib/twemoji.d.ts",
 		"/G/Dropbox/Projects/tweetmap/website/www/node_modules/bower/node_modules/update-notifier/node_modules/latest-version/node_modules/package-json/node_modules/registry-url/node_modules/npmconf/node_modules/once/node_modules/wrappy/test/basic.js",
 		"/G/Dropbox/Projects/tweetmap/website/www/node_modules/typescript/ThirdPartyNoticeText.txt",
 		"/G/Dropbox/Projects/tweetmap/website/www/node_modules/grunt-contrib-less/node_modules/less/test/less/errors/property-asterisk-only-name.less",
@@ -200,7 +281,6 @@
 		"/C/Users/Alex/Downloads/site/public/docs/clojure/clojure.core-api.html",
 		"/G/Dropbox/Projects/tweetmap/website/www/dist/css/style.css",
 		"/G/Dropbox/Projects/tweetmap/website/www/dist/css/bootstrap.css",
-		"/G/Dropbox/Projects/tweetmap/website/www/src/js/App.ts",
 		"/G/Dropbox/Projects/tweetmap/website/www/src/js/lib/bootstrap.d.ts",
 		"/G/Dropbox/Projects/tweetmap/website/www/src/js/lib/jquery.d.ts",
 		"/home/alex/Desktop/tweetmap/website/www/src/js/Tweet.ts",
@@ -278,7 +358,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 92.0,
 		"where_history":
 		[
 		]
@@ -288,6 +368,56 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"string",
+			"average",
+			"darken",
+			"h3",
+			"jquery",
+			"getJSON",
+			"api",
+			"twemoji",
+			"basis",
+			"white",
+			"avgLine",
+			"div",
+			"count",
+			"currentLine",
+			"0",
+			"average",
+			"hour",
+			"bottom",
+			"time",
+			"d3",
+			"top",
+			"average",
+			"twemoji",
+			"alert",
+			"average",
+			"any",
+			"date",
+			"xAxis",
+			"hour",
+			"date",
+			"bottom",
+			"TimeScale",
+			"scale",
+			"time",
+			"width",
+			"d3",
+			"parse",
+			"forma",
+			"format",
+			"_refresh",
+			"private",
+			"Overlay",
+			"knockout",
+			"id=\"feed\"",
+			"feed",
+			"this.feed",
+			"this.map",
+			"_active",
+			"ws",
+			"pictures[0]",
 			"control",
 			"data",
 			"float",
@@ -365,16 +495,7 @@
 			"less",
 			"copy",
 			"less",
-			"default",
-			"alignment",
-			"copy",
-			"');\n",
-			"tslint",
-			"amd",
-			"watch",
-			"css",
-			"concat",
-			"true"
+			"default"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -392,86 +513,53 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/index.html",
+					"file": "/C/Users/Alex/AppData/Roaming/Sublime Text 3/Packages/ArcticTypescript/README.md",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9807,
+						"buffer_size": 15375,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4980,
-								4980
+								907,
+								907
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"word_wrap": false
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1494.0,
+						"translation.y": 270.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "src/js/Chart.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2372,
+						"buffer_size": 1309,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2372,
-								2372
-							]
-						],
-						"settings":
-						{
-							"auto_name": "<nav class=\"navbar navbar-default navbar-fixed-top",
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/js/Tweet.ts",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 1542,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
+								1285,
+								1285
 							]
 						],
 						"settings":
@@ -485,32 +573,89 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 324.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "src/css/leaflet.less",
+					"buffer": 2,
+					"file": "/G/Dropbox/Projects/tweetmap/website/handlers.go",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 233,
+						"buffer_size": 1301,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								101,
-								101
+								229,
+								229
 							]
 						],
 						"settings":
 						{
-							"open_with_edit": true,
+							"syntax": "Packages/Go/Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/G/Dropbox/Projects/tweetmap/website/main.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1195,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Go/Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/css/bootstrap.less",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 814,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
 							"syntax": "Packages/LESS/LESS.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -521,25 +666,26 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "src/css/tweetmap.less",
+					"buffer": 5,
+					"file": "src/js/ViewModel.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1103,
+						"buffer_size": 2585,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								608,
-								608
+								1706,
+								1706
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/LESS/LESS.tmLanguage"
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 432.0,
