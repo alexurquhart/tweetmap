@@ -42,13 +42,14 @@ class Last24HoursChart extends Chart {
 			        value: ['count', 'average']
 			    },
 			    names: {
-			        count: 'Current',
+			        count: 'Observed',
 			        average: 'Weekly Average'
 			    },
 			    colors: {
 			    	count: '#E8EEFF',
 			    	average: '#383C47'
-			    }
+			    },
+			    type: 'spline'
 			},
 			axis: {
 			    x: {

@@ -3,12 +3,24 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <![endif]-->
+
+        <!--[if lt IE 8]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
         <title>Ottawa Tweet Mapper</title>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css" media="all" />
         <link rel="stylesheet" type="text/css" href="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css">
         <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/c3/0.4.9/c3.min.css">
-        <link rel="stylesheet" href="css/style.css" type="text/css" media="all" /> 
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
     </head>
     <body>
         <div id="tooltip"></div>
@@ -48,7 +60,8 @@
                         <ul id="tab-header" class="nav nav-tabs" role="navlist">
                             <li class="active" role="presentation"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Live Feed</a></li>
                             <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Charts</a></li>
-                            <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Stats</a></li>
+                            <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Hashtags</a></li>
+                            <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Overlays</a></li>
                         </ul>
                         
                         <div id="tab-content" class="tab-content">
@@ -75,8 +88,40 @@
                                 <div id="chart"></div>
                             </div>
 
-                            <!-- Stats -->
-                            <div class="tab-pane" id="tab3" role="tabpanel">Statistics</div>
+                            <!-- Hashtags -->
+                            <div class="tab-pane" id="tab3" role="tabpanel">
+
+                                <table class="table table-condensed table-hover">
+                                    <caption class="text-center"><strong>Popular Hashtags (Past 24 Hours)</strong></caption>
+                                    <thead>
+                                        <tr>
+                                            <th>Hashtag</th>
+                                            <th>#</th>
+                                            <th colspan="2">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach: topHashtags">
+                                        <tr>
+                                            <td>
+                                                <a data-bind="attr: {href: 'https://twitter.com/hashtag/' + hashtag }, text: '#' + hashtag"></a>
+                                            </td>
+                                            <td data-bind="text: count"></td>
+                                            <td>
+                                                <a href="#">
+                                                    <i class="fa fa-line-chart" data-toggle="tooltip" data-placement="top" title="View Trends"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#">
+                                                    <i class="fa fa-map-marker" data-toggle="tooltip" data-placement="top" title="View Heatmap"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="tab-pane" id="tab4" role="tabpanel">Statistics</div>
                         </div>
                     </div>
                 </div>

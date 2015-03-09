@@ -7,12 +7,18 @@
 /// <reference path="Overlay.ts"/>
 /// <reference path="Chart.ts"/>
 
+interface IHashtag {
+	hashtag: string;
+	count: number;
+}
+
 class ViewModel {
 	public onlineCount: KnockoutObservable<number>;
 	public latestTweets: KnockoutObservableArray<Tweet>;
 	public lastTweet: KnockoutComputed<Tweet>;
 	public latestPictures: KnockoutComputed<Tweet[]>;
 	public activeOverlay: KnockoutObservable<string>;
+	public topHashtags: KnockoutObservableArray<IHashtag>;
 
 	public panToTweet: any = (tweet: Tweet) => {
 		this._map.panTo(tweet);
@@ -26,6 +32,7 @@ class ViewModel {
 	constructor() {
 		this._api = new API('http://tweet.alexurquhart.com/');
 		this.latestTweets = ko.observableArray([]);
+		this.topHashtags = ko.observableArray([]);
 		this.latestPictures = ko.computed(() => { return this.getLatestPictures(); });
 		this.lastTweet = ko.computed(() => { return this.latestTweets()[0]; });
 
@@ -48,7 +55,11 @@ class ViewModel {
 		this._map = new TweetMap;
 		this._feed = new Feed('ws://tweet.alexurquhart.com/ws/', (tweet: Tweet) => { this.addTweet(tweet); });
 
-		var chart: Chart = new Last24HoursChart('#chart', this._api);
+		new Last24HoursChart('#chart', this._api);
+		this._api.getTweetData('hashtags/past24hours', (data: IHashtag[]) => {
+			this.topHashtags(data);
+			$('[data-toggle="tooltip"]').tooltip();
+		});
 	}
 
 	addTweet(tweet: Tweet): void {

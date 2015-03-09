@@ -13,8 +13,6 @@ function resizeSidebar(): void {
 }
 
 $(function(): void {
-	$('[data-toggle="tooltip"]').tooltip();
-
 	// Resize the tab content
 	resizeSidebar();
 	$(window).resize(resizeSidebar);
